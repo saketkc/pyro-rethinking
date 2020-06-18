@@ -5,6 +5,7 @@ scipy
 pytorch
 pyro-ppl 
 proplot
+ipykernel
 jupyterlab
 seaborn
 pandas
