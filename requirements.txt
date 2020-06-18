@@ -1,0 +1,11 @@
+jupyter-book
+matplotlib
+numpy
+scipy 
+pytorch
+pyro-ppl 
+proplot
+jupyterlab
+seaborn
+pandas
+blackcellmagic
