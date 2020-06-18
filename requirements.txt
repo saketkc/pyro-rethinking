@@ -2,7 +2,7 @@ jupyter-book
 matplotlib
 numpy
 scipy 
-pytorch
+torch
 pyro-ppl 
 proplot
 ipykernel
