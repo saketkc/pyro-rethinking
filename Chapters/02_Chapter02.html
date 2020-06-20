@@ -96,23 +96,30 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+                    class="fas fa-download"></i></button>
 
             
             <div class="dropdown-buttons">
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/Chapters/02_Chapter02.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <a class="dropdown-buttons" href="../_sources/Chapters/02_Chapter02.ipynb"><button type="button"
+                        class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                        data-placement="left">.ipynb</button></a>
                 <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                    onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
             
         </div>
@@ -121,7 +128,9 @@
         
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
         
@@ -146,28 +155,21 @@
 <h1>Chapter 02 - Small Worlds and Large Worlds<a class="headerlink" href="#chapter-02-small-worlds-and-large-worlds" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">blackcellmagic</span>
-<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
+<span class="kn">import</span> <span class="nn">pyro</span>
+<span class="kn">import</span> <span class="nn">pyro.distributions</span> <span class="k">as</span> <span class="nn">dist</span>
+<span class="kn">import</span> <span class="nn">pyro.infer</span>
+<span class="kn">import</span> <span class="nn">pyro.optim</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.distributions.constraints</span> <span class="k">as</span> <span class="nn">constraints</span>
 <span class="kn">import</span> <span class="nn">torch.tensor</span> <span class="k">as</span> <span class="nn">tensor</span>
-
-<span class="kn">import</span> <span class="nn">pyro</span>
-<span class="kn">import</span> <span class="nn">pyro.infer</span>
-<span class="kn">import</span> <span class="nn">pyro.optim</span>
-<span class="kn">import</span> <span class="nn">pyro.distributions</span> <span class="k">as</span> <span class="nn">dist</span>
 <span class="kn">from</span> <span class="nn">pyro.contrib.autoguide</span> <span class="kn">import</span> <span class="n">AutoLaplaceApproximation</span>
+
 <span class="n">pyro</span><span class="o">.</span><span class="n">set_rng_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
 <span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">fontname</span> <span class="o">=</span> <span class="s2">&quot;Arial&quot;</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">large</span> <span class="o">=</span> <span class="mi">22</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">small</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">ticklen</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">tickratio</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">rc</span><span class="o">.</span><span class="n">margin</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
 </pre></div>
@@ -179,8 +181,6 @@
 </div>
 <div class="stderr docutils container">
 <pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
-/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/proplot/config.py:555: ProPlotWarning: rc setting 'large' was renamed to text.titlesize in version 0.6.
-/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/proplot/config.py:555: ProPlotWarning: rc setting 'small' was renamed to text.labelsize in version 0.6.
 </pre>
 </div>
 </div>
@@ -371,7 +371,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Need this for estinamting standard deviation of the posterior</span>
 <span class="c1"># See: https://forum.pyro.ai/t/standard-deviation-of-the-posterior/1916</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">w</span> <span class="o">=</span> <span class="mf">6.</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mf">6.0</span>
 <span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
 
 <span class="n">conditioned</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">tensor</span><span class="p">(</span><span class="n">w</span><span class="p">)})</span>
@@ -379,9 +379,9 @@
 <span class="n">guide</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">autoguide</span><span class="o">.</span><span class="n">AutoLaplaceApproximation</span><span class="p">(</span><span class="n">conditioned</span><span class="p">)</span>
 <span class="n">laplace_guide</span> <span class="o">=</span> <span class="n">guide</span><span class="o">.</span><span class="n">laplace_approximation</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">pred</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">Predictive</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]]</span>
-<span class="n">p_posterior_mean</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span>
-<span class="n">p_posterior_std</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span>
+<span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">]]</span>
+<span class="n">p_posterior_mean</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">])</span>
+<span class="n">p_posterior_std</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">])</span>
 <span class="n">p_summary</span>
 </pre></div>
 </div>
@@ -442,11 +442,11 @@
 <span class="n">quad_density</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">p_posterior_mean</span><span class="p">,</span> <span class="n">p_posterior_std</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">p_grid</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">exact_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact posterior&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_grid</span><span class="p">,</span> <span class="n">quad_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;quadratic approximation&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;n = 9&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;n = 9&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -460,11 +460,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># play with w, n</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="mf">6.</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mf">12.</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mf">24.</span><span class="p">,</span> <span class="mi">36</span><span class="p">)]):</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mf">12.0</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mf">24.0</span><span class="p">,</span> <span class="mi">36</span><span class="p">)]):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;n = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="n">exact_density</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">p_grid</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
-    
+
     <span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
 
     <span class="n">conditioned</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="n">tensor</span><span class="p">(</span><span class="n">w</span><span class="p">)})</span>
@@ -472,9 +472,9 @@
     <span class="n">guide</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">autoguide</span><span class="o">.</span><span class="n">AutoLaplaceApproximation</span><span class="p">(</span><span class="n">conditioned</span><span class="p">)</span>
     <span class="n">laplace_guide</span> <span class="o">=</span> <span class="n">guide</span><span class="o">.</span><span class="n">laplace_approximation</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">Predictive</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-    <span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]]</span>
-    <span class="n">p_posterior_mean</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span>
-    <span class="n">p_posterior_std</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span>
+    <span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">]]</span>
+    <span class="n">p_posterior_mean</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">])</span>
+    <span class="n">p_posterior_std</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">])</span>
 
     <span class="n">quad_density</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">p_posterior_mean</span><span class="p">,</span> <span class="n">p_posterior_std</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">p_grid</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 
@@ -483,7 +483,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
-<span class="c1">#TODO: </span>
+<span class="c1"># TODO:</span>
 </pre></div>
 </div>
 </div>
