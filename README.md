@@ -2,5 +2,5 @@
 
 
 This is a collection of notebooks in [Pyro](http://pyro.ai/) for the code examples
-in [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) by
+in [Statistical Rethinking (1st Edition)](https://xcelab.net/rm/statistical-rethinking/) by
 Richard McElreath.
