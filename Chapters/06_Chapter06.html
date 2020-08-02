@@ -1,0 +1,1705 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 06 - Overfitting, Regularization, and Information Criteria &#8212; Statistical Rethinking in Pyro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chapter 05 - Multivariate Linear Models" href="05_Chapter05.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Statistical Rethinking in Pyro</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Statistical Rethinking with Pyro
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html">
+   Chapter 02 - Small Worlds and Large Worlds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-1">
+   Code 2.1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-2">
+   Code 2.2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-3">
+   Code 2.3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#figure-2-7">
+   Figure 2.7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-5">
+   Code 2.5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-6">
+   Code 2.6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#code-2-7">
+   Code 2.7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html">
+   Chapter 03 - Sampling the Imaginary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-1">
+   Code 3.1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-2">
+   Code 3.2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-3">
+   Code 3.3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-4-3-5">
+   Code 3.4-3.5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-6">
+   Code 3.6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-7">
+   Code 3.7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-8">
+   Code 3.8
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-9">
+   Code 3.9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-10">
+   Code 3.10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-11">
+   Code 3.11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-12">
+   Code 3.12
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-13">
+   Code 3.13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-14">
+   Code 3.14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-15">
+   Code 3.15
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-16">
+   Code 3.16
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-17">
+   Code 3.17
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-18">
+   Code 3.18
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-19">
+   Code 3.19
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-20">
+   Code 3.20
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-21">
+   Code 3.21
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-22">
+   Code 3.22
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-23">
+   Code 3.23
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-24">
+   Code 3.24
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-25">
+   Code 3.25
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#code-3-26">
+   Code 3.26
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html">
+   Chapter 04 - Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-1">
+   Code 4.1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-2">
+   Code 4.2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-3">
+   Code 4.3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-4">
+   Code 4.4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-5">
+   Code 4.5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-6">
+   Code 4.6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-7">
+   Code 4.7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-8">
+   Code 4.8
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-9">
+   Code 4.9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-10">
+   Code 4.10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-11">
+   Code 4.11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-12">
+   Code 4.12
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-13">
+   Code 4.13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-14">
+   Code 4.14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-15">
+   Code 4.15
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-16">
+   Code 4.16
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-17">
+   Code 4.17
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-18">
+   Code 4.18
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-19">
+   Code 4.19
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-20">
+   Code 4.20
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-21">
+   Code 4.21
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-22">
+   Code 4.22
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-23">
+   Code 4.23
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-24">
+   Code 4.24
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-25">
+   Code 4.25
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-26">
+   Code 4.26
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-27">
+   Code 4.27
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-28">
+   Code 4.28
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-29">
+   Code 4.29
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-30">
+   Code 4.30
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-31">
+   Code 4.31
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-32">
+   Code 4.32
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-33">
+   Code 4.33
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-34">
+   Code 4.34
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-35">
+   Code 4.35
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-36">
+   Code 4.36
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-37">
+   Code 4.37
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-38">
+   Code 4.38
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-39">
+   Code 4.39
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-40">
+   Code 4.40
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-41">
+   Code 4.41
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-42">
+   Code 4.42
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-43">
+   Code 4.43
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-44">
+   Code 4.44
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-45">
+   Code 4.45
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-46">
+   Code 4.46
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-47">
+   Code 4.47
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-48">
+   Code 4.48
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-49">
+   Code 4.49
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-50">
+   Code 4.50
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-51">
+   Code 4.51
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-52">
+   Code 4.52
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-53">
+   Code 4.53
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-54">
+   Code 4.54
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-55">
+   Code 4.55
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-56">
+   Code 4.56
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-57">
+   Code 4.57
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-58">
+   Code 4.58
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-59">
+   Code 4.59
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-60">
+   Code 4.60
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-61">
+   Code 4.61
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-62">
+   Code 4.62
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-63">
+   Code 4.63
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-64">
+   Code 4.64
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-65">
+   Code 4.65
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-66">
+   Code 4.66
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-67">
+   Code 4.67
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-68">
+   Code 4.68
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-69">
+   Code 4.69
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-70">
+   Code 4.70
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-71">
+   Code 4.71
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#code-4-72">
+   Code 4.72
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html">
+   Chapter 05 - Multivariate Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-2">
+   Code 5.2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-3">
+   Code 5.3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-4">
+   Code 5.4
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-5">
+   Code 5.5
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-6">
+   Code 5.6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-7">
+   Code 5.7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-8">
+   Code 5.8
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-9">
+   Code 5.9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-10">
+   Code 5.10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-11">
+   Code 5.11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-12">
+   Code 5.12
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-13">
+   Code 5.13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#ccode-5-14">
+   Ccode 5.14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-15">
+   Code 5.15
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-16">
+   Code 5.16
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-17">
+   Code 5.17
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-18">
+   Code 5.18
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-19">
+   Code 5.19
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-20">
+   Code 5.20
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-21">
+   Code 5.21
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-22">
+   Code 5.22
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-23">
+   Code 5.23
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-24">
+   Code 5.24
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-25">
+   Code 5.25
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-26">
+   Code 5.26
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-27">
+   Code 5.27
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-28">
+   Code 5.28
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-29">
+   Code 5.29
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-30">
+   Code 5.30
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-34">
+   Code 5.34
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-35">
+   Code 5.35
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-36">
+   Code 5.36
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-37">
+   Code 5.37
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-38">
+   Code 5.38
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-39">
+   Code 5.39
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-40">
+   Code 5.40
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-41">
+   Code 5.41
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-42">
+   Code 5.42
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-43">
+   Code 5.43
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-44">
+   Code 5.44
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-45">
+   Code 5.45
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-46">
+   Code 5.46
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-47">
+   Code 5.47
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-48">
+   Code 5.48
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-49">
+   Code 5.49
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-50">
+   Code 5.50
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-51">
+   Code 5.51
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-52">
+   Code 5.52
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-53">
+   Code 5.53
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-54">
+   Code 5.54
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-55">
+   Code 5.55
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-56">
+   Code 5.56
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-57">
+   Code 5.57
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-58">
+   Code 5.58
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-59">
+   Code 5.59
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-60">
+   Code 5.60
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-61">
+   Code 5.61
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Chapter05.html#code-5-62">
+   Code 5.62
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 06 - Overfitting, Regularization, and Information Criteria
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#code-6-1">
+   Code 6.1
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapters/06_Chapter06.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/saketkc/pyro-rethinking/blob/master/Chapters/06_Chapter06.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="chapter-06-overfitting-regularization-and-information-criteria">
+<h1>Chapter 06 - Overfitting, Regularization, and Information Criteria<a class="headerlink" href="#chapter-06-overfitting-regularization-and-information-criteria" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install torch torchvision pyro-ppl proplot black blackcellmagic statsmodels patsy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /usr/local/lib/python3.6/dist-packages (1.5.1+cu101)
+Requirement already satisfied: torchvision in /usr/local/lib/python3.6/dist-packages (0.6.1+cu101)
+Requirement already satisfied: pyro-ppl in /usr/local/lib/python3.6/dist-packages (1.3.1)
+Requirement already satisfied: proplot in /usr/local/lib/python3.6/dist-packages (0.6.4)
+Requirement already satisfied: black in /usr/local/lib/python3.6/dist-packages (19.10b0)
+Requirement already satisfied: blackcellmagic in /usr/local/lib/python3.6/dist-packages (0.0.2)
+Requirement already satisfied: statsmodels in /usr/local/lib/python3.6/dist-packages (0.10.2)
+Requirement already satisfied: patsy in /usr/local/lib/python3.6/dist-packages (0.5.1)
+Requirement already satisfied: numpy in /usr/local/lib/python3.6/dist-packages (from torch) (1.18.5)
+Requirement already satisfied: future in /usr/local/lib/python3.6/dist-packages (from torch) (0.16.0)
+Requirement already satisfied: pillow&gt;=4.1.1 in /usr/local/lib/python3.6/dist-packages (from torchvision) (7.0.0)
+Requirement already satisfied: pyro-api&gt;=0.1.1 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (0.1.2)
+Requirement already satisfied: opt-einsum&gt;=2.3.2 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (3.2.1)
+Requirement already satisfied: tqdm&gt;=4.36 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (4.41.1)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.6/dist-packages (from proplot) (3.2.2)
+Requirement already satisfied: toml&gt;=0.9.4 in /usr/local/lib/python3.6/dist-packages (from black) (0.10.1)
+Requirement already satisfied: attrs&gt;=18.1.0 in /usr/local/lib/python3.6/dist-packages (from black) (19.3.0)
+Requirement already satisfied: appdirs in /usr/local/lib/python3.6/dist-packages (from black) (1.4.4)
+Requirement already satisfied: typed-ast&gt;=1.4.0 in /usr/local/lib/python3.6/dist-packages (from black) (1.4.1)
+Requirement already satisfied: regex in /usr/local/lib/python3.6/dist-packages (from black) (2019.12.20)
+Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /usr/local/lib/python3.6/dist-packages (from black) (0.8.0)
+Requirement already satisfied: click&gt;=6.5 in /usr/local/lib/python3.6/dist-packages (from black) (7.1.2)
+Requirement already satisfied: ipython in /usr/local/lib/python3.6/dist-packages (from blackcellmagic) (5.5.0)
+Requirement already satisfied: pandas&gt;=0.19 in /usr/local/lib/python3.6/dist-packages (from statsmodels) (1.0.5)
+Requirement already satisfied: scipy&gt;=0.18 in /usr/local/lib/python3.6/dist-packages (from statsmodels) (1.4.1)
+Requirement already satisfied: six in /usr/local/lib/python3.6/dist-packages (from patsy) (1.12.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: pygments in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (2.1.3)
+Requirement already satisfied: prompt-toolkit&lt;2.0.0,&gt;=1.0.4 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (1.0.18)
+Requirement already satisfied: pickleshare in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (0.7.5)
+Requirement already satisfied: simplegeneric&gt;0.8 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (0.8.1)
+Requirement already satisfied: pexpect; sys_platform != &quot;win32&quot; in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.8.0)
+Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (47.3.1)
+Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.3.3)
+Requirement already satisfied: decorator in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.4.2)
+Requirement already satisfied: pytz&gt;=2017.2 in /usr/local/lib/python3.6/dist-packages (from pandas&gt;=0.19-&gt;statsmodels) (2018.9)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.6/dist-packages (from prompt-toolkit&lt;2.0.0,&gt;=1.0.4-&gt;ipython-&gt;blackcellmagic) (0.2.5)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.6/dist-packages (from pexpect; sys_platform != &quot;win32&quot;-&gt;ipython-&gt;blackcellmagic) (0.6.0)
+Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">blackcellmagic</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
+<span class="kn">import</span> <span class="nn">pyro</span>
+<span class="kn">import</span> <span class="nn">pyro.distributions</span> <span class="k">as</span> <span class="nn">dist</span>
+<span class="kn">import</span> <span class="nn">pyro.infer</span>
+<span class="kn">import</span> <span class="nn">pyro.ops.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">pyro.optim</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.distributions.constraints</span> <span class="k">as</span> <span class="nn">constraints</span>
+<span class="kn">import</span> <span class="nn">torch.tensor</span> <span class="k">as</span> <span class="nn">tensor</span>
+<span class="kn">from</span> <span class="nn">pyro.contrib.autoguide</span> <span class="kn">import</span> <span class="n">AutoLaplaceApproximation</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="n">pyro</span><span class="o">.</span><span class="n">set_rng_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/usr/local/lib/python3.6/dist-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
+</pre>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/usr/local/lib/python3.6/dist-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
+  import pandas.util.testing as tm
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-6-1">
+<h1>Code 6.1<a class="headerlink" href="#code-6-1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.tensor</span> <span class="k">as</span> <span class="nn">tensor</span>
+<span class="kn">import</span> <span class="nn">pyro</span>
+<span class="kn">import</span> <span class="nn">pyro.distributions</span> <span class="k">as</span> <span class="nn">dist</span>
+<span class="kn">from</span> <span class="nn">pyro.infer</span> <span class="kn">import</span> <span class="n">SVI</span><span class="p">,</span> <span class="n">Trace_ELBO</span>
+<span class="kn">from</span> <span class="nn">pyro.infer.autoguide</span> <span class="kn">import</span> <span class="n">AutoDiagonalNormal</span>
+
+<span class="n">sppnames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;afarensis&quot;</span><span class="p">,</span> <span class="s2">&quot;africanus&quot;</span><span class="p">,</span> <span class="s2">&quot;habilis&quot;</span><span class="p">,</span> <span class="s2">&quot;boisei&quot;</span><span class="p">,</span> <span class="s2">&quot;rudolfensis&quot;</span><span class="p">,</span> <span class="s2">&quot;ergaster&quot;</span><span class="p">,</span> <span class="s2">&quot;sapiens&quot;</span><span class="p">]</span>
+<span class="n">brainvolcc</span> <span class="o">=</span> <span class="p">[</span><span class="mf">438.</span><span class="p">,</span> <span class="mf">452.</span><span class="p">,</span> <span class="mf">612.</span><span class="p">,</span> <span class="mf">521.</span><span class="p">,</span> <span class="mf">752.</span><span class="p">,</span> <span class="mf">871.</span><span class="p">,</span> <span class="mf">1350.</span><span class="p">]</span>
+<span class="n">masskg</span> <span class="o">=</span> <span class="p">[</span><span class="mf">37.0</span><span class="p">,</span> <span class="mf">35.5</span><span class="p">,</span> <span class="mf">34.5</span><span class="p">,</span> <span class="mf">41.5</span><span class="p">,</span> <span class="mf">55.5</span><span class="p">,</span> <span class="mf">61.0</span><span class="p">,</span> <span class="mf">53.5</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="n">sppnames</span><span class="p">,</span> <span class="s2">&quot;brain&quot;</span><span class="p">:</span><span class="n">brainvolcc</span><span class="p">,</span> <span class="s2">&quot;mass&quot;</span><span class="p">:</span> <span class="n">masskg</span><span class="p">})</span>
+<span class="n">brain</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.</span>
+  <span class="n">weight</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">))</span>
+  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">x</span>
+  <span class="n">bias</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mf">100.</span><span class="p">))</span>
+  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">+</span> <span class="n">bias</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">obs</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">y</span>
+
+<span class="n">adam</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">})</span>
+<span class="n">guide</span> <span class="o">=</span> <span class="n">AutoDiagonalNormal</span><span class="p">(</span><span class="n">modelLM</span><span class="p">)</span>
+
+<span class="n">svi</span> <span class="o">=</span> <span class="n">SVI</span><span class="p">(</span><span class="n">modelLM</span><span class="p">,</span> <span class="n">guide</span><span class="p">,</span> <span class="n">adam</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">Trace_ELBO</span><span class="p">())</span>
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+    <span class="c1"># calculate the loss and take a gradient step</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">svi</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">brain</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[iteration </span><span class="si">%04d</span><span class="s2">] loss: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">brain</span><span class="p">)))</span>
+    <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 922617.0140
+[iteration 0101] loss: 736301.3414
+[iteration 0201] loss: 597407.8432
+[iteration 0301] loss: 467509.3486
+[iteration 0401] loss: 365105.8928
+[iteration 0501] loss: 286934.9869
+[iteration 0601] loss: 217594.9398
+[iteration 0701] loss: 165312.7858
+[iteration 0801] loss: 121732.0647
+[iteration 0901] loss: 94113.1033
+[iteration 1001] loss: 71102.8468
+[iteration 1101] loss: 55977.4891
+[iteration 1201] loss: 43756.8428
+[iteration 1301] loss: 36727.4556
+[iteration 1401] loss: 30650.4078
+[iteration 1501] loss: 28724.8164
+[iteration 1601] loss: 26610.1936
+[iteration 1701] loss: 25622.7252
+[iteration 1801] loss: 24928.6907
+[iteration 1901] loss: 24721.7366
+[iteration 2001] loss: 24464.8411
+[iteration 2101] loss: 24283.6640
+[iteration 2201] loss: 24243.5505
+[iteration 2301] loss: 24215.0529
+[iteration 2401] loss: 24222.8154
+[iteration 2501] loss: 24209.6450
+[iteration 2601] loss: 24212.2392
+[iteration 2701] loss: 24212.2720
+[iteration 2801] loss: 24206.0991
+[iteration 2901] loss: 24204.4869
+[iteration 3001] loss: 24204.8578
+[iteration 3101] loss: 24203.9615
+[iteration 3201] loss: 24199.1800
+[iteration 3301] loss: 24199.4095
+[iteration 3401] loss: 24195.1827
+[iteration 3501] loss: 24197.1072
+[iteration 3601] loss: 24198.8789
+[iteration 3701] loss: 24191.1596
+[iteration 3801] loss: 24186.4128
+[iteration 3901] loss: 24179.6238
+[iteration 4001] loss: 24193.7353
+[iteration 4101] loss: 24177.3508
+[iteration 4201] loss: 24170.1165
+[iteration 4301] loss: 24168.5186
+[iteration 4401] loss: 24163.6002
+[iteration 4501] loss: 24161.5777
+[iteration 4601] loss: 24155.3574
+[iteration 4701] loss: 24149.1734
+[iteration 4801] loss: 24143.9461
+[iteration 4901] loss: 24143.7691
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(20.3188), tensor(20.4905), tensor(20.6623)],
+ &#39;weight&#39;: [tensor(15.4664), tensor(15.4902), tensor(15.5140)]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
+tensor([ 16.7326, -38.7955])
+AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-38.9142), tensor(-38.7955), tensor(-38.6767)],
+ &#39;weight&#39;: [tensor(16.7250), tensor(16.7326), tensor(16.7403)]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+  <span class="c1">#sigma = pyro.sample(&quot;sigma&quot;, dist.HalfCauchy(2.))</span>
+  
+  <span class="n">sigma</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">))</span>
+  <span class="n">weight</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span>
+  <span class="n">wx</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span><span class="n">x</span> 
+  <span class="c1">#if intercept:</span>
+  <span class="n">bias</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.</span><span class="p">))</span>
+  <span class="n">wx</span> <span class="o">+=</span> <span class="n">bias</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">obs</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">def</span> <span class="nf">guideLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+  <span class="n">mean_weight_param</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">))</span>
+  <span class="n">scale_weight_param</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;scale_weight_param&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">))</span>
+  <span class="n">mean_bias_param</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_bias_param&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+  <span class="n">scale_bias_param</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;scale_bias_param&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">))</span>
+  <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean_weight_param</span><span class="p">,</span> <span class="n">scale_weight_param</span><span class="p">))</span>
+  <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean_bias_param</span><span class="p">,</span> <span class="n">scale_bias_param</span><span class="p">))</span>
+  <span class="c1">#pass</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  weight_param = pyro.param(&quot;weight_param&quot;, tensor(1.)</span>
+<span class="sd">    )</span>
+<span class="sd">  bias_param = pyro.param(&quot;bias_param&quot;, tensor(x.mean())</span>
+<span class="sd">    )</span>
+<span class="sd">  sigma_param = pyro.param(</span>
+<span class="sd">              &quot;sigma_param&quot;, tensor(1.), constraint=constraints.positive</span>
+<span class="sd">    )</span>
+<span class="sd">  return pyro.sample(&quot;weight&quot;, dist.Delta(weight_param)), pyro.sample(&quot;bias&quot;, dist.Delta(bias_param)), pyro.sample(&quot;sigma&quot;, dist.Delta(sigma_param))</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+
+<span class="n">brain</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+<span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
+<span class="n">conditionedLM</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">modelLM</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">brain</span><span class="p">})</span>
+<span class="n">svi</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">SVI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">conditionedLM</span><span class="p">,</span>
+                     <span class="n">guide</span><span class="o">=</span><span class="n">guideLM</span><span class="p">,</span>
+                     <span class="n">optim</span><span class="o">=</span><span class="n">pyro</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">}),</span>
+                     <span class="n">loss</span><span class="o">=</span><span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">Trace_ELBO</span><span class="p">())</span>
+
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">svi</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">brain</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57d8b128d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/06_Chapter06_7_1.png" src="../_images/06_Chapter06_7_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.infer</span> <span class="kn">import</span> <span class="n">SVI</span><span class="p">,</span> <span class="n">Trace_ELBO</span>
+<span class="kn">from</span> <span class="nn">pyro.infer.autoguide</span> <span class="kn">import</span> <span class="n">AutoDiagonalNormal</span>
+
+<span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+  <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.</span>
+  <span class="n">bias</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mf">100.</span><span class="p">))</span>
+  <span class="n">weight</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span>
+  <span class="n">wx</span> <span class="o">=</span> <span class="n">bias</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">x</span><span class="c1">#(x-x.mean()) </span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">obs</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">wx</span>
+
+<span class="n">brain</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+
+<span class="n">adam</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="n">guide</span> <span class="o">=</span> <span class="n">AutoDiagonalNormal</span><span class="p">(</span><span class="n">modelLM</span><span class="p">)</span>
+
+<span class="n">svi</span> <span class="o">=</span> <span class="n">SVI</span><span class="p">(</span><span class="n">modelLM</span><span class="p">,</span> <span class="n">guide</span><span class="p">,</span> <span class="n">adam</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">Trace_ELBO</span><span class="p">())</span>
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+    <span class="c1"># calculate the loss and take a gradient step</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">svi</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">brain</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[iteration </span><span class="si">%04d</span><span class="s2">] loss: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">brain</span><span class="p">)))</span>
+    <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 233790.9992
+[iteration 0101] loss: 54766.2408
+[iteration 0201] loss: 26296.1646
+[iteration 0301] loss: 25091.1893
+[iteration 0401] loss: 25069.8338
+[iteration 0501] loss: 25055.3571
+[iteration 0601] loss: 25058.1818
+[iteration 0701] loss: 25030.7960
+[iteration 0801] loss: 25014.5342
+[iteration 0901] loss: 24997.5771
+[iteration 1001] loss: 24976.4261
+[iteration 1101] loss: 24961.4700
+[iteration 1201] loss: 24941.4946
+[iteration 1301] loss: 24916.0623
+[iteration 1401] loss: 24893.0335
+[iteration 1501] loss: 24871.4338
+[iteration 1601] loss: 24843.1331
+[iteration 1701] loss: 24811.1419
+[iteration 1801] loss: 24787.4239
+[iteration 1901] loss: 24762.4270
+[iteration 2001] loss: 24720.0782
+[iteration 2101] loss: 24699.4856
+[iteration 2201] loss: 24658.9981
+[iteration 2301] loss: 24617.8488
+[iteration 2401] loss: 24586.5736
+[iteration 2501] loss: 24553.2592
+[iteration 2601] loss: 24517.7130
+[iteration 2701] loss: 24481.6459
+[iteration 2801] loss: 24434.6413
+[iteration 2901] loss: 24400.3492
+[iteration 3001] loss: 24358.7223
+[iteration 3101] loss: 24309.3678
+[iteration 3201] loss: 24268.8241
+[iteration 3301] loss: 24223.0639
+[iteration 3401] loss: 24178.8132
+[iteration 3501] loss: 24134.1093
+[iteration 3601] loss: 24089.2851
+[iteration 3701] loss: 24037.2571
+[iteration 3801] loss: 23995.5859
+[iteration 3901] loss: 23949.2654
+[iteration 4001] loss: 23898.2613
+[iteration 4101] loss: 23854.2809
+[iteration 4201] loss: 23799.4264
+[iteration 4301] loss: 23751.3402
+[iteration 4401] loss: 23708.6682
+[iteration 4501] loss: 23662.6529
+[iteration 4601] loss: 23615.6218
+[iteration 4701] loss: 23572.5174
+[iteration 4801] loss: 23528.9294
+[iteration 4901] loss: 23489.1542
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57d4c4e208&gt;]
+</pre></div>
+</div>
+<img alt="../_images/06_Chapter06_8_2.png" src="../_images/06_Chapter06_8_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor(45.5000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
+tensor([-51.5508,  16.9979])
+AutoDiagonalNormal.scale tensor([0.3538, 0.0114])
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-51.7895), tensor(-51.5508), tensor(-51.3122)],
+ &#39;weight&#39;: [tensor(16.9902), tensor(16.9979), tensor(17.0056)]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>AutoLaplaceApproximation.loc Parameter containing:
+tensor([ 20.6599, 351.9877])
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-48-cbfcc17eba69&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pyro/infer/autoguide/guides.py</span> in <span class="ni">quantiles</span><span class="nt">(self, quantiles, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span>         <span class="p">:</span><span class="n">rtype</span><span class="p">:</span> <span class="nb">dict</span>
+<span class="g g-Whitespace">    </span><span class="mi">729</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">730</span><span class="sd">         loc, scale = self._loc_scale(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span><span class="sd">         quantiles = torch.tensor(quantiles, dtype=loc.dtype, device=loc.device).unsqueeze(-1)</span>
+<span class="g g-Whitespace">    </span><span class="mi">732</span><span class="sd">         latents = dist.Normal(loc, scale).icdf(quantiles)</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pyro/infer/autoguide/guides.py</span> in <span class="ni">_loc_scale</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="sd">             :meth:`quantiles`</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span> 
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="k">def</span> <span class="nf">median</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<span class="ne">NotImplementedError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.nn</span> <span class="kn">import</span> <span class="n">PyroSample</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">pyro.nn</span> <span class="kn">import</span> <span class="n">PyroModule</span>
+<span class="kn">from</span> <span class="nn">pyro.infer.autoguide</span> <span class="kn">import</span> <span class="n">AutoDiagonalNormal</span>
+
+
+<span class="k">class</span> <span class="nc">BayesianRegression</span><span class="p">(</span><span class="n">PyroModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">PyroModule</span><span class="p">[</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">](</span><span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">PyroSample</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">([</span><span class="n">out_features</span><span class="p">,</span> <span class="n">in_features</span><span class="p">])</span><span class="o">.</span><span class="n">to_event</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">PyroSample</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">([</span><span class="n">out_features</span><span class="p">])</span><span class="o">.</span><span class="n">to_event</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.</span><span class="c1">#pyro.sample(&quot;sigma&quot;, dist.Uniform(0., 1.))</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">pyro</span><span class="o">.</span><span class="n">plate</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;obs&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">obs</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mean</span>
+
+<span class="n">brain</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BayesianRegression</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">guide</span> <span class="o">=</span> <span class="n">AutoDiagonalNormal</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">adam</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">({</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">})</span>
+<span class="n">svi</span> <span class="o">=</span> <span class="n">SVI</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">guide</span><span class="p">,</span> <span class="n">adam</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">Trace_ELBO</span><span class="p">())</span>
+<span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+    <span class="c1"># calculate the loss and take a gradient step</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">svi</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">brain</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[iteration </span><span class="si">%04d</span><span class="s2">] loss: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">brain</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 2256713.6311
+[iteration 0101] loss: 1611672.6334
+[iteration 0201] loss: 1152250.9338
+[iteration 0301] loss: 823457.5973
+[iteration 0401] loss: 638191.6492
+[iteration 0501] loss: 517771.8575
+[iteration 0601] loss: 456630.1136
+[iteration 0701] loss: 425245.6357
+[iteration 0801] loss: 409288.2073
+[iteration 0901] loss: 400613.0964
+[iteration 1001] loss: 397583.8878
+[iteration 1101] loss: 396388.7844
+[iteration 1201] loss: 395542.3466
+[iteration 1301] loss: 395340.0239
+[iteration 1401] loss: 395266.2926
+[iteration 1501] loss: 395132.2250
+[iteration 1601] loss: 395011.0164
+[iteration 1701] loss: 394902.2548
+[iteration 1801] loss: 394754.8238
+[iteration 1901] loss: 394743.1801
+[iteration 2001] loss: 394458.3846
+[iteration 2101] loss: 394352.4667
+[iteration 2201] loss: 394148.2777
+[iteration 2301] loss: 393974.8461
+[iteration 2401] loss: 393814.8561
+[iteration 2501] loss: 393627.5515
+[iteration 2601] loss: 393398.9890
+[iteration 2701] loss: 393228.6202
+[iteration 2801] loss: 393003.4653
+[iteration 2901] loss: 392775.4217
+[iteration 3001] loss: 392533.2755
+[iteration 3101] loss: 392315.0405
+[iteration 3201] loss: 392057.7322
+[iteration 3301] loss: 391763.6521
+[iteration 3401] loss: 391502.6946
+[iteration 3501] loss: 391217.5938
+[iteration 3601] loss: 390923.7363
+[iteration 3701] loss: 390593.2368
+[iteration 3801] loss: 390304.2928
+[iteration 3901] loss: 389932.5006
+[iteration 4001] loss: 389603.2170
+[iteration 4101] loss: 389252.4493
+[iteration 4201] loss: 388866.0080
+[iteration 4301] loss: 388497.1606
+[iteration 4401] loss: 388099.9950
+[iteration 4501] loss: 387701.7419
+[iteration 4601] loss: 387303.6899
+[iteration 4701] loss: 386859.7767
+[iteration 4801] loss: 386422.9781
+[iteration 4901] loss: 385972.0114
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
+tensor([14.0674, 42.6264])
+AutoDiagonalNormal.scale tensor([0.0232, 0.0266])
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;linear.bias&#39;: [tensor([42.6085]), tensor([42.6264]), tensor([42.6444])],
+ &#39;linear.weight&#39;: [tensor([[14.0517]]),
+  tensor([[14.0674]]),
+  tensor([[14.0830]])]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_URL</span> <span class="o">=</span> <span class="s2">&quot;https://d2hg8soec8ck9v.cloudfront.net/datasets/rugged_data.csv&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;cont_africa&quot;</span><span class="p">,</span> <span class="s2">&quot;rugged&quot;</span><span class="p">,</span> <span class="s2">&quot;rgdppc_2000&quot;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rgdppc_2000</span><span class="p">)]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;rgdppc_2000&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;rgdppc_2000&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;cont_africa_x_rugged&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cont_africa&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;rugged&quot;</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;cont_africa&quot;</span><span class="p">,</span> <span class="s2">&quot;rugged&quot;</span><span class="p">,</span> <span class="s2">&quot;cont_africa_x_rugged&quot;</span><span class="p">,</span> <span class="s2">&quot;rgdppc_2000&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">x_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([170, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="c1">#.shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([37.0000, 35.5000, 34.5000, 41.5000, 55.5000, 61.0000, 53.5000])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([ 438.,  452.,  612.,  521.,  752.,  871., 1350.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bias = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_bias_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="c1">#print(&quot;sigma = &quot;, pyro.param(&quot;sigma&quot;).item())</span>
+
+<span class="n">weight</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_bias_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="c1">#sigma = pyro.param(&quot;sigma_param&quot;).item()</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">+</span> <span class="n">bias</span> 
+<span class="n">resid</span> <span class="o">=</span> <span class="n">brain</span><span class="o">-</span><span class="n">y_pred</span>
+<span class="mi">1</span><span class="o">-</span><span class="n">resid</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;brain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>weight =  10.068291664123535
+bias =  54.50359344482422
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor(0.3610)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;brain ~ mass&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  brain   R-squared:                       0.490
+Model:                            OLS   Adj. R-squared:                  0.388
+Method:                 Least Squares   F-statistic:                     4.807
+Date:                Sun, 05 Jul 2020   Prob (F-statistic):             0.0798
+Time:                        16:19:05   Log-Likelihood:                -47.462
+No. Observations:                   7   AIC:                             98.92
+Df Residuals:                       5   BIC:                             98.82
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept   -227.6287    439.794     -0.518      0.627   -1358.154     902.897
+mass          20.6889      9.436      2.192      0.080      -3.568      44.946
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   1.561
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                2.372
+Skew:                           1.399   Prob(JB):                        0.305
+Kurtosis:                       3.548   Cond. No.                         215.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="05_Chapter05.html" title="previous page">Chapter 05 - Multivariate Linear Models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Saket Choudhary<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
