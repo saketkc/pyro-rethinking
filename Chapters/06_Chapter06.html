@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>160. Chapter 06 - Overfitting, Regularization, and Information Criteria &#8212; Statistical Rethinking in Pyro</title>
+    <title>135. Chapter 06 - Overfitting, Regularization, and Information Criteria &#8212; Statistical Rethinking in Pyro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="101. Chapter 05 - Multivariate Linear Models" href="05_Chapter05.html" />
+    <link rel="prev" title="76. Chapter 05 - Multivariate Linear Models" href="05_Chapter05.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -76,798 +76,673 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-1">
-   3. Code 3.1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-2">
-   4. Code 3.2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-3">
-   5. Code 3.3
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-4-3-5">
-   6. Code 3.4-3.5
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-6">
-   7. Code 3.6
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-7">
-   8. Code 3.7
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-8">
-   9. Code 3.8
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-9">
-   10. Code 3.9
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-10">
-   11. Code 3.10
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-11">
-   12. Code 3.11
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-12">
-   13. Code 3.12
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-13">
-   14. Code 3.13
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-14">
-   15. Code 3.14
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-15">
-   16. Code 3.15
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-16">
-   17. Code 3.16
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-17">
-   18. Code 3.17
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-18">
-   19. Code 3.18
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-19">
-   20. Code 3.19
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-20">
-   21. Code 3.20
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-21">
-   22. Code 3.21
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-22">
-   23. Code 3.22
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-23">
-   24. Code 3.23
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-24">
-   25. Code 3.24
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-25">
-   26. Code 3.25
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03_Chapter03.html#code-3-26">
-   27. Code 3.26
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html">
-   28. Chapter 04 - Linear Models
+   3. Chapter 04 - Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-1">
-   29. Code 4.1
+   4. Code 4.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-2">
-   30. Code 4.2
+   5. Code 4.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-3">
-   31. Code 4.3
+   6. Code 4.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-4">
-   32. Code 4.4
+   7. Code 4.4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-5">
-   33. Code 4.5
+   8. Code 4.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-6">
-   34. Code 4.6
+   9. Code 4.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-7">
-   35. Code 4.7
+   10. Code 4.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-8">
-   36. Code 4.8
+   11. Code 4.8
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-9">
-   37. Code 4.9
+   12. Code 4.9
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-10">
-   38. Code 4.10
+   13. Code 4.10
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-11">
-   39. Code 4.11
+   14. Code 4.11
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-12">
-   40. Code 4.12
+   15. Code 4.12
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-13">
-   41. Code 4.13
+   16. Code 4.13
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-14">
-   42. Code 4.14
+   17. Code 4.14
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-15">
-   43. Code 4.15
+   18. Code 4.15
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-16">
-   44. Code 4.16
+   19. Code 4.16
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-17">
-   45. Code 4.17
+   20. Code 4.17
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-18">
-   46. Code 4.18
+   21. Code 4.18
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-19">
-   47. Code 4.19
+   22. Code 4.19
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-20">
-   48. Code 4.20
+   23. Code 4.20
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-21">
-   49. Code 4.21
+   24. Code 4.21
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-22">
-   50. Code 4.22
+   25. Code 4.22
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-23">
-   51. Code 4.23
+   26. Code 4.23
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-24">
-   52. Code 4.24
+   27. Code 4.24
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-25">
-   53. Code 4.25
+   28. Code 4.25
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-26">
-   54. Code 4.26
+   29. Code 4.26
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-27">
-   55. Code 4.27
+   30. Code 4.27
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-28">
-   56. Code 4.28
+   31. Code 4.28
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-29">
-   57. Code 4.29
+   32. Code 4.29
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-30">
-   58. Code 4.30
+   33. Code 4.30
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-31">
-   59. Code 4.31
+   34. Code 4.31
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-32">
-   60. Code 4.32
+   35. Code 4.32
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-33">
-   61. Code 4.33
+   36. Code 4.33
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-34">
-   62. Code 4.34
+   37. Code 4.34
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-35">
-   63. Code 4.35
+   38. Code 4.35
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-36">
-   64. Code 4.36
+   39. Code 4.36
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-37">
-   65. Code 4.37
+   40. Code 4.37
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-38">
-   66. Code 4.38
+   41. Code 4.38
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-39">
-   67. Code 4.39
+   42. Code 4.39
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-40">
-   68. Code 4.40
+   43. Code 4.40
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-41">
-   69. Code 4.41
+   44. Code 4.41
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-42">
-   70. Code 4.42
+   45. Code 4.42
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-43">
-   71. Code 4.43
+   46. Code 4.43
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-44">
-   72. Code 4.44
+   47. Code 4.44
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-45">
-   73. Code 4.45
+   48. Code 4.45
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-46">
-   74. Code 4.46
+   49. Code 4.46
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-47">
-   75. Code 4.47
+   50. Code 4.47
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-48">
-   76. Code 4.48
+   51. Code 4.48
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-49">
-   77. Code 4.49
+   52. Code 4.49
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-50">
-   78. Code 4.50
+   53. Code 4.50
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-51">
-   79. Code 4.51
+   54. Code 4.51
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-52">
-   80. Code 4.52
+   55. Code 4.52
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-53">
-   81. Code 4.53
+   56. Code 4.53
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-54">
-   82. Code 4.54
+   57. Code 4.54
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-55">
-   83. Code 4.55
+   58. Code 4.55
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-56">
-   84. Code 4.56
+   59. Code 4.56
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-57">
-   85. Code 4.57
+   60. Code 4.57
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-58">
-   86. Code 4.58
+   61. Code 4.58
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-59">
-   87. Code 4.59
+   62. Code 4.59
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-60">
-   88. Code 4.60
+   63. Code 4.60
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-61">
-   89. Code 4.61
+   64. Code 4.61
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-62">
-   90. Code 4.62
+   65. Code 4.62
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-63">
-   91. Code 4.63
+   66. Code 4.63
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-64">
-   92. Code 4.64
+   67. Code 4.64
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-65">
-   93. Code 4.65
+   68. Code 4.65
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-66">
-   94. Code 4.66
+   69. Code 4.66
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-67">
-   95. Code 4.67
+   70. Code 4.67
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-68">
-   96. Code 4.68
+   71. Code 4.68
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-69">
-   97. Code 4.69
+   72. Code 4.69
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-70">
-   98. Code 4.70
+   73. Code 4.70
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-71">
-   99. Code 4.71
+   74. Code 4.71
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#code-4-72">
-   100. Code 4.72
+   75. Code 4.72
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html">
-   101. Chapter 05 - Multivariate Linear Models
+   76. Chapter 05 - Multivariate Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-2">
-   102. Code 5.2
+   77. Code 5.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-3">
-   103. Code 5.3
+   78. Code 5.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-4">
-   104. Code 5.4
+   79. Code 5.4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-5">
-   105. Code 5.5
+   80. Code 5.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-6">
-   106. Code 5.6
+   81. Code 5.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-7">
-   107. Code 5.7
+   82. Code 5.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-8">
-   108. Code 5.8
+   83. Code 5.8
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-9">
-   109. Code 5.9
+   84. Code 5.9
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-10">
-   110. Code 5.10
+   85. Code 5.10
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-11">
-   111. Code 5.11
+   86. Code 5.11
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-12">
-   112. Code 5.12
+   87. Code 5.12
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-13">
-   113. Code 5.13
+   88. Code 5.13
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#ccode-5-14">
-   114. Ccode 5.14
+   89. Ccode 5.14
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-15">
-   115. Code 5.15
+   90. Code 5.15
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-16">
-   116. Code 5.16
+   91. Code 5.16
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-17">
-   117. Code 5.17
+   92. Code 5.17
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-18">
-   118. Code 5.18
+   93. Code 5.18
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-19">
-   119. Code 5.19
+   94. Code 5.19
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-20">
-   120. Code 5.20
+   95. Code 5.20
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-21">
-   121. Code 5.21
+   96. Code 5.21
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-22">
-   122. Code 5.22
+   97. Code 5.22
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-23">
-   123. Code 5.23
+   98. Code 5.23
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-24">
-   124. Code 5.24
+   99. Code 5.24
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-25">
-   125. Code 5.25
+   100. Code 5.25
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-26">
-   126. Code 5.26
+   101. Code 5.26
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-27">
-   127. Code 5.27
+   102. Code 5.27
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-28">
-   128. Code 5.28
+   103. Code 5.28
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-29">
-   129. Code 5.29
+   104. Code 5.29
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-30">
-   130. Code 5.30
+   105. Code 5.30
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-34">
-   131. Code 5.34
+   106. Code 5.34
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-35">
-   132. Code 5.35
+   107. Code 5.35
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-36">
-   133. Code 5.36
+   108. Code 5.36
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-37">
-   134. Code 5.37
+   109. Code 5.37
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-38">
-   135. Code 5.38
+   110. Code 5.38
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-39">
-   136. Code 5.39
+   111. Code 5.39
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-40">
-   137. Code 5.40
+   112. Code 5.40
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-41">
-   138. Code 5.41
+   113. Code 5.41
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-42">
-   139. Code 5.42
+   114. Code 5.42
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-43">
-   140. Code 5.43
+   115. Code 5.43
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-44">
-   141. Code 5.44
+   116. Code 5.44
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-45">
-   142. Code 5.45
+   117. Code 5.45
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-46">
-   143. Code 5.46
+   118. Code 5.46
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-47">
-   144. Code 5.47
+   119. Code 5.47
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-48">
-   145. Code 5.48
+   120. Code 5.48
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-49">
-   146. Code 5.49
+   121. Code 5.49
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-50">
-   147. Code 5.50
+   122. Code 5.50
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-51">
-   148. Code 5.51
+   123. Code 5.51
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-52">
-   149. Code 5.52
+   124. Code 5.52
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-53">
-   150. Code 5.53
+   125. Code 5.53
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-54">
-   151. Code 5.54
+   126. Code 5.54
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-55">
-   152. Code 5.55
+   127. Code 5.55
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-56">
-   153. Code 5.56
+   128. Code 5.56
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-57">
-   154. Code 5.57
+   129. Code 5.57
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-58">
-   155. Code 5.58
+   130. Code 5.58
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-59">
-   156. Code 5.59
+   131. Code 5.59
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-60">
-   157. Code 5.60
+   132. Code 5.60
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-61">
-   158. Code 5.61
+   133. Code 5.61
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-62">
-   159. Code 5.62
+   134. Code 5.62
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   160. Chapter 06 - Overfitting, Regularization, and Information Criteria
+   135. Chapter 06 - Overfitting, Regularization, and Information Criteria
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-6-1">
-   161. Code 6.1
+   136. Code 6.1
   </a>
  </li>
 </ul>
@@ -950,7 +825,7 @@
                 
   <p><a href="https://colab.research.google.com/github/saketkc/pyro-rethinking/blob/master/Chapters/06_Chapter06.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <div class="section" id="chapter-06-overfitting-regularization-and-information-criteria">
-<h1><span class="section-number">160. </span>Chapter 06 - Overfitting, Regularization, and Information Criteria<a class="headerlink" href="#chapter-06-overfitting-regularization-and-information-criteria" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">135. </span>Chapter 06 - Overfitting, Regularization, and Information Criteria<a class="headerlink" href="#chapter-06-overfitting-regularization-and-information-criteria" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install torch torchvision pyro-ppl proplot black blackcellmagic statsmodels patsy
@@ -1046,7 +921,7 @@ Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist
 </div>
 </div>
 <div class="section" id="code-6-1">
-<h1><span class="section-number">161. </span>Code 6.1<a class="headerlink" href="#code-6-1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">136. </span>Code 6.1<a class="headerlink" href="#code-6-1" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1639,7 +1514,7 @@ Warnings:
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="05_Chapter05.html" title="previous page"><span class="section-number">101. </span>Chapter 05 - Multivariate Linear Models</a>
+    <a class='left-prev' id="prev-link" href="05_Chapter05.html" title="previous page"><span class="section-number">76. </span>Chapter 05 - Multivariate Linear Models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
