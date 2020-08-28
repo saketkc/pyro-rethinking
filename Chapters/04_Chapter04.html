@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Chapter 04 - Linear Models &#8212; Statistical Rethinking in Pyro</title>
+    <title>35. Chapter 04 - Linear Models &#8212; Statistical Rethinking in Pyro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -23,15 +22,12 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/mystnb.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 05 - Multivariate Linear Models" href="05_Chapter05.html" />
-    <link rel="prev" title="Chapter 03 - Sampling the Imaginary" href="03_Chapter03.html" />
+    <link rel="next" title="108. Chapter 05 - Multivariate Linear Models" href="05_Chapter05.html" />
+    <link rel="prev" title="9. Chapter 03 - Sampling the Imaginary" href="03_Chapter03.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -72,842 +68,842 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html">
-   Chapter 02 - Small Worlds and Large Worlds
+   1. Chapter 02 - Small Worlds and Large Worlds
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-1">
-   Code 2.1
+   2. Code 2.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-2">
-   Code 2.2
+   3. Code 2.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-3">
-   Code 2.3
+   4. Code 2.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#figure-2-7">
-   Figure 2.7
+   5. Figure 2.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-5">
-   Code 2.5
+   6. Code 2.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-6">
-   Code 2.6
+   7. Code 2.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#code-2-7">
-   Code 2.7
+   8. Code 2.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html">
-   Chapter 03 - Sampling the Imaginary
+   9. Chapter 03 - Sampling the Imaginary
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-1">
-   Code 3.1
+   10. Code 3.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-2">
-   Code 3.2
+   11. Code 3.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-3">
-   Code 3.3
+   12. Code 3.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-4-3-5">
-   Code 3.4-3.5
+   13. Code 3.4-3.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-6">
-   Code 3.6
+   14. Code 3.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-7">
-   Code 3.7
+   15. Code 3.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-8">
-   Code 3.8
+   16. Code 3.8
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-9">
-   Code 3.9
+   17. Code 3.9
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-10">
-   Code 3.10
+   18. Code 3.10
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-11">
-   Code 3.11
+   19. Code 3.11
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-12">
-   Code 3.12
+   20. Code 3.12
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-13">
-   Code 3.13
+   21. Code 3.13
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-14">
-   Code 3.14
+   22. Code 3.14
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-15">
-   Code 3.15
+   23. Code 3.15
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-16">
-   Code 3.16
+   24. Code 3.16
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-17">
-   Code 3.17
+   25. Code 3.17
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-18">
-   Code 3.18
+   26. Code 3.18
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-19">
-   Code 3.19
+   27. Code 3.19
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-20">
-   Code 3.20
+   28. Code 3.20
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-21">
-   Code 3.21
+   29. Code 3.21
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-22">
-   Code 3.22
+   30. Code 3.22
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-23">
-   Code 3.23
+   31. Code 3.23
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-24">
-   Code 3.24
+   32. Code 3.24
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-25">
-   Code 3.25
+   33. Code 3.25
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#code-3-26">
-   Code 3.26
+   34. Code 3.26
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 04 - Linear Models
+   35. Chapter 04 - Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-1">
-   Code 4.1
+   36. Code 4.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-2">
-   Code 4.2
+   37. Code 4.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-3">
-   Code 4.3
+   38. Code 4.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-4">
-   Code 4.4
+   39. Code 4.4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-5">
-   Code 4.5
+   40. Code 4.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-6">
-   Code 4.6
+   41. Code 4.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-7">
-   Code 4.7
+   42. Code 4.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-8">
-   Code 4.8
+   43. Code 4.8
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-9">
-   Code 4.9
+   44. Code 4.9
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-10">
-   Code 4.10
+   45. Code 4.10
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-11">
-   Code 4.11
+   46. Code 4.11
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-12">
-   Code 4.12
+   47. Code 4.12
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-13">
-   Code 4.13
+   48. Code 4.13
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-14">
-   Code 4.14
+   49. Code 4.14
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-15">
-   Code 4.15
+   50. Code 4.15
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-16">
-   Code 4.16
+   51. Code 4.16
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-17">
-   Code 4.17
+   52. Code 4.17
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-18">
-   Code 4.18
+   53. Code 4.18
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-19">
-   Code 4.19
+   54. Code 4.19
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-20">
-   Code 4.20
+   55. Code 4.20
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-21">
-   Code 4.21
+   56. Code 4.21
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-22">
-   Code 4.22
+   57. Code 4.22
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-23">
-   Code 4.23
+   58. Code 4.23
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-24">
-   Code 4.24
+   59. Code 4.24
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-25">
-   Code 4.25
+   60. Code 4.25
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-26">
-   Code 4.26
+   61. Code 4.26
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-27">
-   Code 4.27
+   62. Code 4.27
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-28">
-   Code 4.28
+   63. Code 4.28
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-29">
-   Code 4.29
+   64. Code 4.29
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-30">
-   Code 4.30
+   65. Code 4.30
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-31">
-   Code 4.31
+   66. Code 4.31
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-32">
-   Code 4.32
+   67. Code 4.32
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-33">
-   Code 4.33
+   68. Code 4.33
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-34">
-   Code 4.34
+   69. Code 4.34
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-35">
-   Code 4.35
+   70. Code 4.35
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-36">
-   Code 4.36
+   71. Code 4.36
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-37">
-   Code 4.37
+   72. Code 4.37
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-38">
-   Code 4.38
+   73. Code 4.38
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-39">
-   Code 4.39
+   74. Code 4.39
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-40">
-   Code 4.40
+   75. Code 4.40
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-41">
-   Code 4.41
+   76. Code 4.41
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-42">
-   Code 4.42
+   77. Code 4.42
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-43">
-   Code 4.43
+   78. Code 4.43
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-44">
-   Code 4.44
+   79. Code 4.44
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-45">
-   Code 4.45
+   80. Code 4.45
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-46">
-   Code 4.46
+   81. Code 4.46
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-47">
-   Code 4.47
+   82. Code 4.47
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-48">
-   Code 4.48
+   83. Code 4.48
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-49">
-   Code 4.49
+   84. Code 4.49
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-50">
-   Code 4.50
+   85. Code 4.50
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-51">
-   Code 4.51
+   86. Code 4.51
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-52">
-   Code 4.52
+   87. Code 4.52
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-53">
-   Code 4.53
+   88. Code 4.53
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-54">
-   Code 4.54
+   89. Code 4.54
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-55">
-   Code 4.55
+   90. Code 4.55
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-56">
-   Code 4.56
+   91. Code 4.56
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-57">
-   Code 4.57
+   92. Code 4.57
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-58">
-   Code 4.58
+   93. Code 4.58
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-59">
-   Code 4.59
+   94. Code 4.59
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-60">
-   Code 4.60
+   95. Code 4.60
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-61">
-   Code 4.61
+   96. Code 4.61
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-62">
-   Code 4.62
+   97. Code 4.62
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-63">
-   Code 4.63
+   98. Code 4.63
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-64">
-   Code 4.64
+   99. Code 4.64
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-65">
-   Code 4.65
+   100. Code 4.65
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-66">
-   Code 4.66
+   101. Code 4.66
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-67">
-   Code 4.67
+   102. Code 4.67
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-68">
-   Code 4.68
+   103. Code 4.68
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-69">
-   Code 4.69
+   104. Code 4.69
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-70">
-   Code 4.70
+   105. Code 4.70
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-71">
-   Code 4.71
+   106. Code 4.71
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#code-4-72">
-   Code 4.72
+   107. Code 4.72
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html">
-   Chapter 05 - Multivariate Linear Models
+   108. Chapter 05 - Multivariate Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-2">
-   Code 5.2
+   109. Code 5.2
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-3">
-   Code 5.3
+   110. Code 5.3
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-4">
-   Code 5.4
+   111. Code 5.4
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-5">
-   Code 5.5
+   112. Code 5.5
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-6">
-   Code 5.6
+   113. Code 5.6
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-7">
-   Code 5.7
+   114. Code 5.7
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-8">
-   Code 5.8
+   115. Code 5.8
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-9">
-   Code 5.9
+   116. Code 5.9
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-10">
-   Code 5.10
+   117. Code 5.10
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-11">
-   Code 5.11
+   118. Code 5.11
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-12">
-   Code 5.12
+   119. Code 5.12
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-13">
-   Code 5.13
+   120. Code 5.13
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#ccode-5-14">
-   Ccode 5.14
+   121. Ccode 5.14
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-15">
-   Code 5.15
+   122. Code 5.15
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-16">
-   Code 5.16
+   123. Code 5.16
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-17">
-   Code 5.17
+   124. Code 5.17
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-18">
-   Code 5.18
+   125. Code 5.18
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-19">
-   Code 5.19
+   126. Code 5.19
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-20">
-   Code 5.20
+   127. Code 5.20
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-21">
-   Code 5.21
+   128. Code 5.21
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-22">
-   Code 5.22
+   129. Code 5.22
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-23">
-   Code 5.23
+   130. Code 5.23
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-24">
-   Code 5.24
+   131. Code 5.24
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-25">
-   Code 5.25
+   132. Code 5.25
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-26">
-   Code 5.26
+   133. Code 5.26
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-27">
-   Code 5.27
+   134. Code 5.27
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-28">
-   Code 5.28
+   135. Code 5.28
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-29">
-   Code 5.29
+   136. Code 5.29
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-30">
-   Code 5.30
+   137. Code 5.30
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-34">
-   Code 5.34
+   138. Code 5.34
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-35">
-   Code 5.35
+   139. Code 5.35
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-36">
-   Code 5.36
+   140. Code 5.36
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-37">
-   Code 5.37
+   141. Code 5.37
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-38">
-   Code 5.38
+   142. Code 5.38
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-39">
-   Code 5.39
+   143. Code 5.39
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-40">
-   Code 5.40
+   144. Code 5.40
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-41">
-   Code 5.41
+   145. Code 5.41
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-42">
-   Code 5.42
+   146. Code 5.42
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-43">
-   Code 5.43
+   147. Code 5.43
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-44">
-   Code 5.44
+   148. Code 5.44
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-45">
-   Code 5.45
+   149. Code 5.45
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-46">
-   Code 5.46
+   150. Code 5.46
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-47">
-   Code 5.47
+   151. Code 5.47
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-48">
-   Code 5.48
+   152. Code 5.48
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-49">
-   Code 5.49
+   153. Code 5.49
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-50">
-   Code 5.50
+   154. Code 5.50
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-51">
-   Code 5.51
+   155. Code 5.51
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-52">
-   Code 5.52
+   156. Code 5.52
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-53">
-   Code 5.53
+   157. Code 5.53
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-54">
-   Code 5.54
+   158. Code 5.54
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-55">
-   Code 5.55
+   159. Code 5.55
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-56">
-   Code 5.56
+   160. Code 5.56
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-57">
-   Code 5.57
+   161. Code 5.57
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-58">
-   Code 5.58
+   162. Code 5.58
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-59">
-   Code 5.59
+   163. Code 5.59
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-60">
-   Code 5.60
+   164. Code 5.60
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-61">
-   Code 5.61
+   165. Code 5.61
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_Chapter05.html#code-5-62">
-   Code 5.62
+   166. Code 5.62
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_Chapter06.html">
-   Chapter 06 - Overfitting, Regularization, and Information Criteria
+   167. Chapter 06 - Overfitting, Regularization, and Information Criteria
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_Chapter06.html#code-6-1">
-   Code 6.1
+   168. Code 6.1
   </a>
  </li>
 </ul>
@@ -976,7 +972,7 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             
@@ -990,64 +986,63 @@
                 
   <p><a href="https://colab.research.google.com/github/saketkc/pyro-rethinking/blob/master/Chapters/04_Chapter04.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <div class="section" id="chapter-04-linear-models">
-<h1>Chapter 04 - Linear Models<a class="headerlink" href="#chapter-04-linear-models" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">35. </span>Chapter 04 - Linear Models<a class="headerlink" href="#chapter-04-linear-models" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install torch torchvision pyro-ppl proplot black blackcellmagic
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install torch torchvision pyro-ppl proplot black blackcellmagic
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.5.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.5.0)
 Requirement already satisfied: torchvision in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.7.0)
+Requirement already satisfied: pyro-ppl in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.3.1)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyro-ppl in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.3.1)
-Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.1)
+Requirement already satisfied: black in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (20.8b1)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: black in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (19.10b0)
-Requirement already satisfied: blackcellmagic in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.0.2)
-Requirement already satisfied: future in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (0.18.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: blackcellmagic in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.0.2)
 Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (1.17.0)
+Requirement already satisfied: future in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (0.18.2)
 Requirement already satisfied: pillow&gt;=4.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torchvision) (7.2.0)
-Requirement already satisfied: opt-einsum&gt;=2.3.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (3.3.0)
 Requirement already satisfied: pyro-api&gt;=0.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (0.1.2)
-Requirement already satisfied: tqdm&gt;=4.36 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (4.48.0)
+Requirement already satisfied: opt-einsum&gt;=2.3.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (3.3.0)
+Requirement already satisfied: tqdm&gt;=4.36 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (4.48.2)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.2.1)
+Requirement already satisfied: mypy-extensions&gt;=0.4.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.4.3)
+Requirement already satisfied: typed-ast&gt;=1.4.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.1)
+Requirement already satisfied: regex&gt;=2020.1.8 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (2020.7.14)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.2.1)
-Requirement already satisfied: attrs&gt;=18.1.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (19.3.0)
-Requirement already satisfied: toml&gt;=0.9.4 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.10.1)
-Requirement already satisfied: click&gt;=6.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (7.1.2)
-Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.8.0)
-Requirement already satisfied: regex in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (2020.7.14)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: toml&gt;=0.10.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.10.1)
 Requirement already satisfied: appdirs in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.4)
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: typed-ast&gt;=1.4.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.1)
+Requirement already satisfied: click&gt;=7.1.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (7.1.2)
+Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.8.0)
+Requirement already satisfied: typing-extensions&gt;=3.7.4 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (3.7.4.3)
 Requirement already satisfied: ipython in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from blackcellmagic) (7.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
 Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
 Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
-Requirement already satisfied: jedi&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.17.2)
-Requirement already satisfied: backcall in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.2.0)
-Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (3.0.5)
 Requirement already satisfied: pygments in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (2.6.1)
-Requirement already satisfied: pickleshare in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.7.5)
-Requirement already satisfied: setuptools&gt;=18.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (47.1.0)
 Requirement already satisfied: traitlets&gt;=4.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.3.3)
+Requirement already satisfied: pickleshare in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.7.5)
+Requirement already satisfied: backcall in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.2.0)
+Requirement already satisfied: jedi&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.17.2)
+Requirement already satisfied: setuptools&gt;=18.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (47.1.0)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.4.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.4.2)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (3.0.6)
 Requirement already satisfied: pexpect; sys_platform != &quot;win32&quot; in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.8.0)
 Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;proplot) (1.15.0)
+Requirement already satisfied: ipython-genutils in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
 Requirement already satisfied: parso&lt;0.8.0,&gt;=0.7.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from jedi&gt;=0.10-&gt;ipython-&gt;blackcellmagic) (0.7.1)
 Requirement already satisfied: wcwidth in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython-&gt;blackcellmagic) (0.2.5)
-Requirement already satisfied: ipython-genutils in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
 Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pexpect; sys_platform != &quot;win32&quot;-&gt;ipython-&gt;blackcellmagic) (0.6.0)
 </pre></div>
 </div>
@@ -1055,7 +1050,7 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">blackcellmagic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> blackcellmagic
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1072,7 +1067,7 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 <span class="kn">from</span> <span class="nn">pyro.contrib.autoguide</span> <span class="kn">import</span> <span class="n">AutoLaplaceApproximation</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">pylab</span> inline
 <span class="n">pyro</span><span class="o">.</span><span class="n">set_rng_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
@@ -1081,17 +1076,17 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-1">
-<h1>Code 4.1<a class="headerlink" href="#code-4-1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">36. </span>Code 4.1<a class="headerlink" href="#code-4-1" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by addition</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by addition</span>
 <span class="n">pos</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">16</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -1108,26 +1103,26 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="section" id="code-4-2">
-<h1>Code 4.2<a class="headerlink" href="#code-4-2" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">37. </span>Code 4.2<a class="headerlink" href="#code-4-2" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
 <span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">12</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor(116.2093)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(116.2093)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-3">
-<h1>Code 4.3<a class="headerlink" href="#code-4-3" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">38. </span>Code 4.3<a class="headerlink" href="#code-4-3" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
 
 <span class="n">growth</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">1.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1144,10 +1139,10 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="section" id="code-4-4">
-<h1>Code 4.4<a class="headerlink" href="#code-4-4" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">39. </span>Code 4.4<a class="headerlink" href="#code-4-4" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by multiplication</span>
 
 <span class="n">big</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">small</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="o">.</span><span class="mi">01</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1174,10 +1169,10 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="section" id="code-4-5">
-<h1>Code 4.5<a class="headerlink" href="#code-4-5" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">40. </span>Code 4.5<a class="headerlink" href="#code-4-5" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by log-multiplication</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal by log-multiplication</span>
 
 <span class="n">log_big</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1194,10 +1189,10 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="section" id="code-4-6">
-<h1>Code 4.6<a class="headerlink" href="#code-4-6" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">41. </span>Code 4.6<a class="headerlink" href="#code-4-6" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
 <span class="n">p_grid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">prior</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
@@ -1209,24 +1204,24 @@ Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python
 </div>
 </div>
 <div class="section" id="code-4-7">
-<h1>Code 4.7<a class="headerlink" href="#code-4-7" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">42. </span>Code 4.7<a class="headerlink" href="#code-4-7" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!wget -c https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv
-howell = pd.read_csv(&quot;Howell1.csv&quot;, sep=&quot;;&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget -c https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv
+<span class="n">howell</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Howell1.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>--2020-08-02 03:07:27--  https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2020-08-28 19:12:39--  https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/Howell1.csv
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.208.133
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.208.133|:443... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>200 OK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 12205 (12K) [text/plain]
 Saving to: ‘Howell1.csv’
 
@@ -1234,18 +1229,17 @@ Saving to: ‘Howell1.csv’
 Howell1.csv           0%[                    ]       0  --.-KB/s               
 Howell1.csv         100%[===================&gt;]  11.92K  --.-KB/s    in 0s      
 
-2020-08-02 03:07:27 (106 MB/s) - ‘Howell1.csv’ saved [12205/12205]
-
+2020-08-28 19:12:39 (101 MB/s) - ‘Howell1.csv’ saved [12205/12205]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-8">
-<h1>Code 4.8<a class="headerlink" href="#code-4-8" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">43. </span>Code 4.8<a class="headerlink" href="#code-4-8" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1316,15 +1310,15 @@ Howell1.csv         100%[===================&gt;]  11.92K  --.-KB/s    in 0s
 </div>
 </div>
 <div class="section" id="code-4-9">
-<h1>Code 4.9<a class="headerlink" href="#code-4-9" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">44. </span>Code 4.9<a class="headerlink" href="#code-4-9" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0      151.765
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      151.765
 1      139.700
 2      136.525
 3      156.845
@@ -1342,20 +1336,20 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-10">
-<h1>Code 4.10<a class="headerlink" href="#code-4-10" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">45. </span>Code 4.10<a class="headerlink" href="#code-4-10" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span> <span class="o">=</span> <span class="n">howell</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">howell</span><span class="o">.</span><span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span> <span class="o">=</span> <span class="n">howell</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">howell</span><span class="o">.</span><span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-11">
-<h1>Code 4.11<a class="headerlink" href="#code-4-11" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">46. </span>Code 4.11<a class="headerlink" href="#code-4-11" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">))</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">))</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
@@ -1370,10 +1364,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-12">
-<h1>Code 4.12<a class="headerlink" href="#code-4-12" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">47. </span>Code 4.12<a class="headerlink" href="#code-4-12" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">50.</span><span class="p">))</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">50.</span><span class="p">))</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
@@ -1388,10 +1382,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-13">
-<h1>Code 4.13<a class="headerlink" href="#code-4-13" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">48. </span>Code 4.13<a class="headerlink" href="#code-4-13" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sample_mu</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_mu</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">]))</span>
 <span class="n">sample_sigma</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">5.</span><span class="p">))</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">]))</span>
 <span class="n">prior_h</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">sample_mu</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">]))</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1402,16 +1396,13 @@ Name: height, Length: 544, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/04_Chapter04_29_0.png" src="../_images/04_Chapter04_29_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="code-4-14">
-<h1>Code 4.14<a class="headerlink" href="#code-4-14" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">49. </span>Code 4.14<a class="headerlink" href="#code-4-14" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
 <span class="n">mu_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">140.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">160.</span><span class="p">),</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">sigma_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">4.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">9.</span><span class="p">),</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">post</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">mu_list</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">sigma_list</span><span class="o">.</span><span class="n">numpy</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">])</span>
@@ -1424,10 +1415,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-15">
-<h1>Code 4.15<a class="headerlink" href="#code-4-15" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">50. </span>Code 4.15<a class="headerlink" href="#code-4-15" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
            <span class="n">post_prob</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1435,7 +1426,7 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 640x480 with 1 Axes&gt;, None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 640x480 with 1 Axes&gt;, None)
 </pre></div>
 </div>
 <img alt="../_images/04_Chapter04_33_1.png" src="../_images/04_Chapter04_33_1.png" />
@@ -1443,10 +1434,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-16">
-<h1>Code 4.16<a class="headerlink" href="#code-4-16" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">51. </span>Code 4.16<a class="headerlink" href="#code-4-16" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">post_prob</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1454,7 +1445,7 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 640x480 with 1 Axes&gt;, None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 640x480 with 1 Axes&gt;, None)
 </pre></div>
 </div>
 <img alt="../_images/04_Chapter04_35_1.png" src="../_images/04_Chapter04_35_1.png" />
@@ -1462,10 +1453,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-17">
-<h1>Code 4.17<a class="headerlink" href="#code-4-17" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">52. </span>Code 4.17<a class="headerlink" href="#code-4-17" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sample posterior</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sample posterior</span>
 
 <span class="n">sample_rows</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">post_prob</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
                                 <span class="n">replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1477,10 +1468,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-18">
-<h1>Code 4.18<a class="headerlink" href="#code-4-18" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">53. </span>Code 4.18<a class="headerlink" href="#code-4-18" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample_mu</span><span class="p">,</span> <span class="n">sample_sigma</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;mu&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">)</span>
@@ -1494,10 +1485,10 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-19">
-<h1>Code 4.19<a class="headerlink" href="#code-4-19" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">54. </span>Code 4.19<a class="headerlink" href="#code-4-19" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">sample_mu</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
@@ -1515,17 +1506,17 @@ Name: height, Length: 544, dtype: float64
 </div>
 </div>
 <div class="section" id="code-4-20">
-<h1>Code 4.20<a class="headerlink" href="#code-4-20" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">55. </span>Code 4.20<a class="headerlink" href="#code-4-20" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyro.ops.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyro.ops.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">hpdi</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">sample_mu</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="mf">0.89</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">hpdi</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">sample_sigma</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="mf">0.89</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([154.0704, 155.3769], dtype=torch.float64)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([154.0704, 155.3769], dtype=torch.float64)
 tensor([7.3166, 8.2462], dtype=torch.float64)
 </pre></div>
 </div>
@@ -1533,20 +1524,20 @@ tensor([7.3166, 8.2462], dtype=torch.float64)
 </div>
 </div>
 <div class="section" id="code-4-21">
-<h1>Code 4.21<a class="headerlink" href="#code-4-21" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">56. </span>Code 4.21<a class="headerlink" href="#code-4-21" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">howell2</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">howell2</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-22">
-<h1>Code 4.22<a class="headerlink" href="#code-4-22" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">57. </span>Code 4.22<a class="headerlink" href="#code-4-22" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">150.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">170.</span><span class="p">),</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">150.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">170.</span><span class="p">),</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">sigma_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">4.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">),</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">post</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">mu_list</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">sigma_list</span><span class="o">.</span><span class="n">numpy</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">])</span>
 <span class="n">ll</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">howell2</span><span class="o">.</span><span class="n">height</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1566,7 +1557,7 @@ tensor([7.3166, 8.2462], dtype=torch.float64)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f190df4cb50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f2434501a90&gt;
 </pre></div>
 </div>
 <img alt="../_images/04_Chapter04_47_1.png" src="../_images/04_Chapter04_47_1.png" />
@@ -1574,10 +1565,10 @@ tensor([7.3166, 8.2462], dtype=torch.float64)
 </div>
 </div>
 <div class="section" id="code-4-23">
-<h1>Code 4.23<a class="headerlink" href="#code-4-23" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">58. </span>Code 4.23<a class="headerlink" href="#code-4-23" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">sample2_sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sampled&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">sample2_sigma</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> 
                 <span class="n">tensor</span><span class="p">(</span><span class="n">sample2_sigma</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">sample2_sigma</span><span class="o">.</span><span class="n">values</span><span class="p">))</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
@@ -1593,20 +1584,20 @@ tensor([7.3166, 8.2462], dtype=torch.float64)
 </div>
 </div>
 <div class="section" id="code-4-24">
-<h1>Code 4.24<a class="headerlink" href="#code-4-24" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">59. </span>Code 4.24<a class="headerlink" href="#code-4-24" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span> <span class="o">=</span> <span class="n">howell</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">howell</span><span class="o">.</span><span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span> <span class="o">=</span> <span class="n">howell</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">howell</span><span class="o">.</span><span class="n">age</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-25">
-<h1>Code 4.25<a class="headerlink" href="#code-4-25" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">60. </span>Code 4.25<a class="headerlink" href="#code-4-25" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model41</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model41</span><span class="p">():</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">)))</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">50.</span><span class="p">)))</span>
     <span class="n">height</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span><span class="c1">#,obs=height)</span>
@@ -1641,7 +1632,7 @@ tensor([7.3166, 8.2462], dtype=torch.float64)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>mu =  154.60586547851562
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mu =  154.60586547851562
 sigma =  7.731331825256348
 </pre></div>
 </div>
@@ -1650,10 +1641,10 @@ sigma =  7.731331825256348
 </div>
 </div>
 <div class="section" id="code-4-26">
-<h1>Code 4.26<a class="headerlink" href="#code-4-26" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">61. </span>Code 4.26<a class="headerlink" href="#code-4-26" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
     <span class="n">site_stats</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">samples</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">site_stats</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -1690,10 +1681,10 @@ sigma =  7.731331825256348
 </div>
 </div>
 <div class="section" id="code-4-27">
-<h1>Code 4.27<a class="headerlink" href="#code-4-27" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">62. </span>Code 4.27<a class="headerlink" href="#code-4-27" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p_summary41</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_summary41</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">]]</span>
 <span class="n">p_summary41</span>
 </pre></div>
 </div>
@@ -1748,26 +1739,26 @@ sigma =  7.731331825256348
 </div>
 </div>
 <div class="section" id="code-4-28">
-<h1>Code 4.28<a class="headerlink" href="#code-4-28" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">63. </span>Code 4.28<a class="headerlink" href="#code-4-28" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()}</span>
 <span class="n">start</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;mu&#39;: 154.5970926136364, &#39;sigma&#39;: 7.742332137351995}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;mu&#39;: 154.59709261363636, &#39;sigma&#39;: 7.742332137351996}
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-29">
-<h1>Code 4.29<a class="headerlink" href="#code-4-29" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">64. </span>Code 4.29<a class="headerlink" href="#code-4-29" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model42</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model42</span><span class="p">():</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)))</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">50.</span><span class="p">)))</span>
     <span class="n">height</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span>
@@ -1834,7 +1825,7 @@ sigma =  7.731331825256348
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>mu42 =  177.8636932373047
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mu42 =  177.8636932373047
 sigma42 =  24.51750946044922
 </pre></div>
 </div>
@@ -1888,10 +1879,10 @@ sigma42 =  24.51750946044922
 </div>
 </div>
 <div class="section" id="code-4-30">
-<h1>Code 4.30<a class="headerlink" href="#code-4-30" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">65. </span>Code 4.30<a class="headerlink" href="#code-4-30" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vcov</span><span class="p">(</span><span class="n">pred</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vcov</span><span class="p">(</span><span class="n">pred</span><span class="p">):</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()[</span><span class="s2">&quot;mu&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
   <span class="n">sigma</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
   <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1905,7 +1896,7 @@ sigma42 =  24.51750946044922
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[0.0103, 0.0018],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.0103, 0.0018],
         [0.0018, 0.2181]])
 </pre></div>
 </div>
@@ -1913,10 +1904,10 @@ sigma42 =  24.51750946044922
 </div>
 </div>
 <div class="section" id="code-4-31">
-<h1>Code 4.31<a class="headerlink" href="#code-4-31" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">66. </span>Code 4.31<a class="headerlink" href="#code-4-31" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cov2cor</span><span class="p">(</span><span class="n">cov</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cov2cor</span><span class="p">(</span><span class="n">cov</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">cov</span> <span class="o">/</span> <span class="n">cov</span><span class="o">.</span><span class="n">diag</span><span class="p">()</span><span class="o">.</span><span class="n">ger</span><span class="p">(</span><span class="n">cov</span><span class="o">.</span><span class="n">diag</span><span class="p">())</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
 
 <span class="n">cov</span> <span class="o">=</span> <span class="n">vcov</span><span class="p">(</span><span class="n">pred41</span><span class="p">)</span>
@@ -1926,7 +1917,7 @@ sigma42 =  24.51750946044922
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([0.0101, 0.2333])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.0101, 0.2333])
 tensor([[1.0000, 0.0302],
         [0.0302, 1.0000]])
 </pre></div>
@@ -1935,10 +1926,10 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-32">
-<h1>Code 4.32<a class="headerlink" href="#code-4-32" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">67. </span>Code 4.32<a class="headerlink" href="#code-4-32" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pred41_mu</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()[</span><span class="s2">&quot;mu&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred41_mu</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()[</span><span class="s2">&quot;mu&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">pred41_sigma</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 
 <span class="n">post</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">pred41_mu</span><span class="p">,</span> <span class="n">pred41_sigma</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1947,7 +1938,7 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[154.5693,   7.2724],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[154.5693,   7.2724],
         [154.4774,   7.9250],
         [154.7430,   7.9293],
         ...,
@@ -1960,10 +1951,10 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-33">
-<h1>Code 4.33<a class="headerlink" href="#code-4-33" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">68. </span>Code 4.33<a class="headerlink" href="#code-4-33" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">(</span><span class="n">pred41</span><span class="o">.</span><span class="n">get_samples</span><span class="p">(),</span> <span class="mf">0.945</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">]]</span>
 <span class="n">p_summary</span>
 </pre></div>
 </div>
@@ -2018,10 +2009,10 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-34">
-<h1>Code 4.34<a class="headerlink" href="#code-4-34" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">69. </span>Code 4.34<a class="headerlink" href="#code-4-34" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">MultivariateNormal</span><span class="p">(</span><span class="n">tensor</span><span class="p">([</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;mu&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">MultivariateNormal</span><span class="p">(</span><span class="n">tensor</span><span class="p">([</span><span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;mu&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">p_summary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
                                <span class="n">cov</span><span class="o">.</span><span class="n">float</span><span class="p">())</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">10000</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -2029,10 +2020,10 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-35">
-<h1>Code 4.35<a class="headerlink" href="#code-4-35" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">70. </span>Code 4.35<a class="headerlink" href="#code-4-35" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model41_logsigma</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model41_logsigma</span><span class="p">():</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">20.</span><span class="p">)))</span>
     <span class="n">logsigma</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;logsigma&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">10.</span><span class="p">)))</span>
     <span class="n">height</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">logsigma</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()))</span>
@@ -2070,27 +2061,27 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-36">
-<h1>Code 4.36<a class="headerlink" href="#code-4-36" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">71. </span>Code 4.36<a class="headerlink" href="#code-4-36" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred41_logsigma</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred41_logsigma</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s2">&quot;logsigma&quot;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sigma</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor(7.7237, grad_fn=&lt;MeanBackward0&gt;) tensor(0.2832, grad_fn=&lt;StdBackward0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(7.7237, grad_fn=&lt;MeanBackward0&gt;) tensor(0.2832, grad_fn=&lt;StdBackward0&gt;)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-37">
-<h1>Code 4.37<a class="headerlink" href="#code-4-37" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">72. </span>Code 4.37<a class="headerlink" href="#code-4-37" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">)</span>
@@ -2104,10 +2095,10 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="section" id="code-4-38">
-<h1>Code 4.38<a class="headerlink" href="#code-4-38" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">73. </span>Code 4.38<a class="headerlink" href="#code-4-38" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
 
   <span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">156.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">100.</span><span class="p">)))</span>
@@ -2151,7 +2142,7 @@ tensor([[1.0000, 0.0302],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a =  113.8954086303711
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a =  113.8954086303711
 b =  0.9046812057495117
 sigma =  5.071866035461426
 </pre></div>
@@ -2161,7 +2152,7 @@ sigma =  5.071866035461426
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide43</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">autoguide</span><span class="o">.</span><span class="n">AutoLaplaceApproximation</span><span class="p">(</span><span class="n">conditioned43</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guide43</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">autoguide</span><span class="o">.</span><span class="n">AutoLaplaceApproximation</span><span class="p">(</span><span class="n">conditioned43</span><span class="p">)</span>
 <span class="n">pyro</span><span class="o">.</span><span class="n">clear_param_store</span><span class="p">()</span>
 
 <span class="n">svi</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">SVI</span><span class="p">(</span>
@@ -2188,10 +2179,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-39">
-<h1>Code 4.39<a class="headerlink" href="#code-4-39" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">74. </span>Code 4.39<a class="headerlink" href="#code-4-39" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
 
   <span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">156.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">100.</span><span class="p">)))</span>
@@ -2234,7 +2225,7 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>a =  113.8954086303711
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a =  113.8954086303711
 b =  0.9046812057495117
 sigma =  5.071866035461426
 </pre></div>
@@ -2244,10 +2235,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-40">
-<h1>Code 4.40<a class="headerlink" href="#code-4-40" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">75. </span>Code 4.40<a class="headerlink" href="#code-4-40" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model43</span><span class="p">(</span><span class="n">weight</span><span class="p">):</span>
 
   <span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">100.</span><span class="p">)))</span>
@@ -2367,10 +2358,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-41">
-<h1>Code 4.41<a class="headerlink" href="#code-4-41" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">76. </span>Code 4.41<a class="headerlink" href="#code-4-41" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
     <span class="n">site_stats</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">samples</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">site_stats</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -2405,7 +2396,7 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.0000, -0.9910,  0.0055],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.0000, -0.9910,  0.0055],
         [-0.9910,  1.0000, -0.0049],
         [ 0.0055, -0.0049,  1.0000]])
 </pre></div>
@@ -2469,20 +2460,20 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-42">
-<h1>Code 4.42<a class="headerlink" href="#code-4-42" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">77. </span>Code 4.42<a class="headerlink" href="#code-4-42" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight_centered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight_centered&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-43">
-<h1>Code 4.43<a class="headerlink" href="#code-4-43" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">78. </span>Code 4.43<a class="headerlink" href="#code-4-43" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model44</span><span class="p">(</span><span class="n">weight_centered</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model44</span><span class="p">(</span><span class="n">weight_centered</span><span class="p">):</span>
 
   <span class="n">weight_centered</span> <span class="o">=</span> <span class="n">weight_centered</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="mf">178.</span><span class="p">),</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">100.</span><span class="p">)))</span>
@@ -2546,17 +2537,17 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-44">
-<h1>Code 4.44<a class="headerlink" href="#code-4-44" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">79. </span>Code 4.44<a class="headerlink" href="#code-4-44" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="n">vcov_gen</span><span class="p">(</span><span class="n">pred44</span><span class="o">.</span><span class="n">get_samples</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="n">vcov_gen</span><span class="p">(</span><span class="n">pred44</span><span class="o">.</span><span class="n">get_samples</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">cov2cor</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span>
 <span class="n">summary</span><span class="p">(</span><span class="n">pred44</span><span class="o">.</span><span class="n">get_samples</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.0000, -0.0264,  0.0438],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.0000, -0.0264,  0.0438],
         [-0.0264,  1.0000, -0.0251],
         [ 0.0438, -0.0251,  1.0000]])
 </pre></div>
@@ -2620,10 +2611,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-45">
-<h1>Code 4.45<a class="headerlink" href="#code-4-45" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">80. </span>Code 4.45<a class="headerlink" href="#code-4-45" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">*</span><span class="n">coef_m43_b</span> <span class="o">+</span> <span class="n">coef_m43_a</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
@@ -2638,25 +2629,25 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-46">
-<h1>Code 4.46<a class="headerlink" href="#code-4-46" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">81. </span>Code 4.46<a class="headerlink" href="#code-4-46" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred43</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred43</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-47">
-<h1>Code 4.47<a class="headerlink" href="#code-4-47" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">82. </span>Code 4.47<a class="headerlink" href="#code-4-47" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;_AutoMultivariateNormal_latent&#39;: tensor([[114.1417,   0.8448,  -2.2523],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_AutoMultivariateNormal_latent&#39;: tensor([[114.1417,   0.8448,  -2.2523],
          [113.7764,   0.9718,  -2.1140],
          [113.6371,   0.8523,  -2.2056],
          ...,
@@ -3037,10 +3028,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-48">
-<h1>Code 4.48<a class="headerlink" href="#code-4-48" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">83. </span>Code 4.48<a class="headerlink" href="#code-4-48" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">dN</span> <span class="o">=</span> <span class="n">howell2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">modelN</span><span class="p">(</span><span class="n">weight_centered</span><span class="p">):</span>
@@ -3085,10 +3076,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-49">
-<h1>Code 4.49<a class="headerlink" href="#code-4-49" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">84. </span>Code 4.49<a class="headerlink" href="#code-4-49" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">predN</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">predN</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
 
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -3113,20 +3104,20 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-50">
-<h1>Code 4.50<a class="headerlink" href="#code-4-50" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">85. </span>Code 4.50<a class="headerlink" href="#code-4-50" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu_at_50</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">*</span> <span class="mi">50</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_at_50</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">*</span> <span class="mi">50</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-51">
-<h1>Code 4.51<a class="headerlink" href="#code-4-51" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">86. </span>Code 4.51<a class="headerlink" href="#code-4-51" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">mu_at_50</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$ | weight = 50&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
@@ -3140,49 +3131,49 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-52">
-<h1>Code 4.52<a class="headerlink" href="#code-4-52" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">87. </span>Code 4.52<a class="headerlink" href="#code-4-52" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">hpdi</span><span class="p">(</span><span class="n">mu_at_50</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">hpdi</span><span class="p">(</span><span class="n">mu_at_50</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([158.5554, 159.6319])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(352, 5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([158.5554, 159.6319])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pred43</span><span class="o">.</span><span class="n">get_vectorized_trace</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell2</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;pyro.poutine.trace_struct.Trace at 0x7f19090876d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(352, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred43</span><span class="o">.</span><span class="n">get_vectorized_trace</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyro.poutine.trace_struct.Trace at 0x7f242cc2aac8&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-53">
-<h1>Code 4.53<a class="headerlink" href="#code-4-53" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">88. </span>Code 4.53<a class="headerlink" href="#code-4-53" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
   <span class="n">pred</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">Predictive</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
   <span class="n">samples</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -3194,17 +3185,17 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([157.4199, 156.8046, 157.1543, 156.9337, 157.5259])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([157.4199, 156.8046, 157.1543, 156.9337, 157.5259])
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-54">
-<h1>Code 4.54<a class="headerlink" href="#code-4-54" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">89. </span>Code 4.54<a class="headerlink" href="#code-4-54" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">weight_seq</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">25.</span><span class="p">,</span> <span class="mf">71.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_seq</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">25.</span><span class="p">,</span> <span class="mf">71.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="n">link</span><span class="p">(</span><span class="n">laplace_guide43</span><span class="p">,</span> <span class="n">weight_seq</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3212,10 +3203,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-55">
-<h1>Code 4.55<a class="headerlink" href="#code-4-55" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">90. </span>Code 4.55<a class="headerlink" href="#code-4-55" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1">#ax.plot(howell2[&#39;weight&#39;], howell2[&#39;height&#39;])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
   <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">weight_seq</span><span class="p">,</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -3231,10 +3222,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-56">
-<h1>Code 4.56<a class="headerlink" href="#code-4-56" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">91. </span>Code 4.56<a class="headerlink" href="#code-4-56" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu_mean</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_mean</span> <span class="o">=</span> <span class="n">mu</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">mu_hpdi</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">hpdi</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3242,10 +3233,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-57">
-<h1>Code 4.57<a class="headerlink" href="#code-4-57" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">92. </span>Code 4.57<a class="headerlink" href="#code-4-57" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">howell2</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight_seq</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">weight_seq</span><span class="p">,</span> <span class="n">mu_hpdi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu_hpdi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
@@ -3253,7 +3244,7 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7f190b7a8b90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7f242fbfbb38&gt;
 </pre></div>
 </div>
 <img alt="../_images/04_Chapter04_120_1.png" src="../_images/04_Chapter04_120_1.png" />
@@ -3261,10 +3252,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-58">
-<h1>Code 4.58<a class="headerlink" href="#code-4-58" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">93. </span>Code 4.58<a class="headerlink" href="#code-4-58" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred43</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="n">pred43</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
 
 <span class="n">weight_seq</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">25.</span><span class="p">,</span> <span class="mf">71.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">weight_seq</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight_seq</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -3276,22 +3267,22 @@ sigma =  5.071866035461426
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mu_mean</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_mean</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([46])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([46])
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-59">
-<h1>Code 4.59<a class="headerlink" href="#code-4-59" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">94. </span>Code 4.59<a class="headerlink" href="#code-4-59" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
   <span class="n">samples</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -3306,36 +3297,36 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-60">
-<h1>Code 4.60<a class="headerlink" href="#code-4-60" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">95. </span>Code 4.60<a class="headerlink" href="#code-4-60" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">height_PI</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">sim_height</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height_PI</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">sim_height</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">height_PI</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([2, 46])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([2, 46])
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-61">
-<h1>Code 4.61<a class="headerlink" href="#code-4-61" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">96. </span>Code 4.61<a class="headerlink" href="#code-4-61" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span> <span class="n">howell2</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight_seq</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
@@ -3351,36 +3342,36 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-62">
-<h1>Code 4.62<a class="headerlink" href="#code-4-62" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">97. </span>Code 4.62<a class="headerlink" href="#code-4-62" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sim_height</span> <span class="o">=</span> <span class="n">sim</span><span class="p">(</span><span class="n">pred43</span><span class="p">,</span> <span class="n">weight_seq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_height</span> <span class="o">=</span> <span class="n">sim</span><span class="p">(</span><span class="n">pred43</span><span class="p">,</span> <span class="n">weight_seq</span><span class="p">)</span>
 <span class="n">height_PI</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">sim_height</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.89</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1000, 46])
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-63">
-<h1>Code 4.63<a class="headerlink" href="#code-4-63" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">98. </span>Code 4.63<a class="headerlink" href="#code-4-63" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># skip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># skip</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-64">
-<h1>Code 4.64<a class="headerlink" href="#code-4-64" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">99. </span>Code 4.64<a class="headerlink" href="#code-4-64" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span>
 </pre></div>
 </div>
 </div>
@@ -3494,20 +3485,20 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-65">
-<h1>Code 4.65<a class="headerlink" href="#code-4-65" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">100. </span>Code 4.65<a class="headerlink" href="#code-4-65" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="code-4-66">
-<h1>Code 4.66<a class="headerlink" href="#code-4-66" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">101. </span>Code 4.66<a class="headerlink" href="#code-4-66" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
 
 <span class="k">def</span> <span class="nf">model45</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">weight_s2</span><span class="p">):</span>
 
@@ -3576,10 +3567,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-67">
-<h1>Code 4.67<a class="headerlink" href="#code-4-67" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">102. </span>Code 4.67<a class="headerlink" href="#code-4-67" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">pred45</span><span class="o">.</span><span class="n">get_samples</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">pred45</span><span class="o">.</span><span class="n">get_samples</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -3648,10 +3639,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-68">
-<h1>Code 4.68<a class="headerlink" href="#code-4-68" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">103. </span>Code 4.68<a class="headerlink" href="#code-4-68" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
   <span class="n">pred</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">infer</span><span class="o">.</span><span class="n">Predictive</span><span class="p">(</span><span class="n">laplace_guide</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
   <span class="n">samples</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">get_samples</span><span class="p">()</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;b2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">data2</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;b1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">data1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -3677,10 +3668,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-69">
-<h1>Code 4.69<a class="headerlink" href="#code-4-69" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">104. </span>Code 4.69<a class="headerlink" href="#code-4-69" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell</span><span class="p">[</span><span class="s2">&quot;weight_s&quot;</span><span class="p">],</span> <span class="n">howell</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight_seq</span><span class="p">,</span> <span class="n">mu_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
@@ -3698,10 +3689,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-70">
-<h1>Code 4.70<a class="headerlink" href="#code-4-70" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">105. </span>Code 4.70<a class="headerlink" href="#code-4-70" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span>
 
 <span class="k">def</span> <span class="nf">model46</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">weight_s2</span><span class="p">,</span> <span class="n">weight_s3</span><span class="p">):</span>
@@ -3744,10 +3735,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-71">
-<h1>Code 4.71<a class="headerlink" href="#code-4-71" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">106. </span>Code 4.71<a class="headerlink" href="#code-4-71" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">)</span>
@@ -3761,10 +3752,10 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="section" id="code-4-72">
-<h1>Code 4.72<a class="headerlink" href="#code-4-72" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">107. </span>Code 4.72<a class="headerlink" href="#code-4-72" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">at</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">at</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">at</span> <span class="o">*</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">+</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">howell</span><span class="p">[</span><span class="s1">&#39;weight_s&#39;</span><span class="p">],</span> <span class="n">howell</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">])</span>
@@ -3778,7 +3769,7 @@ sigma =  5.071866035461426
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Height&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Height&#39;)
 </pre></div>
 </div>
 <img alt="../_images/04_Chapter04_151_1.png" src="../_images/04_Chapter04_151_1.png" />
@@ -3795,8 +3786,8 @@ sigma =  5.071866035461426
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="03_Chapter03.html" title="previous page">Chapter 03 - Sampling the Imaginary</a>
-    <a class='right-next' id="next-link" href="05_Chapter05.html" title="next page">Chapter 05 - Multivariate Linear Models</a>
+    <a class='left-prev' id="prev-link" href="03_Chapter03.html" title="previous page"><span class="section-number">9. </span>Chapter 03 - Sampling the Imaginary</a>
+    <a class='right-next' id="next-link" href="05_Chapter05.html" title="next page"><span class="section-number">108. </span>Chapter 05 - Multivariate Linear Models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
