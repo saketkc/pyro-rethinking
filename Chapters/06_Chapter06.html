@@ -90,11 +90,6 @@
    5. Chapter 06 - Overfitting, Regularization, and Information Criteria
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#code-6-1">
-   6. Code 6.1
-  </a>
- </li>
 </ul>
 
 </nav>
@@ -164,7 +159,14 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-6-1">
+   5.1. Code 6.1
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -178,60 +180,1057 @@
 <h1><span class="section-number">5. </span>Chapter 06 - Overfitting, Regularization, and Information Criteria<a class="headerlink" href="#chapter-06-overfitting-regularization-and-information-criteria" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install torch torchvision pyro-ppl proplot black blackcellmagic statsmodels patsy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install torch torchvision pyro-ppl proplot black blackcellmagic statsmodels patsy
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /usr/local/lib/python3.6/dist-packages (1.5.1+cu101)
-Requirement already satisfied: torchvision in /usr/local/lib/python3.6/dist-packages (0.6.1+cu101)
-Requirement already satisfied: pyro-ppl in /usr/local/lib/python3.6/dist-packages (1.3.1)
-Requirement already satisfied: proplot in /usr/local/lib/python3.6/dist-packages (0.6.4)
-Requirement already satisfied: black in /usr/local/lib/python3.6/dist-packages (19.10b0)
-Requirement already satisfied: blackcellmagic in /usr/local/lib/python3.6/dist-packages (0.0.2)
-Requirement already satisfied: statsmodels in /usr/local/lib/python3.6/dist-packages (0.10.2)
-Requirement already satisfied: patsy in /usr/local/lib/python3.6/dist-packages (0.5.1)
-Requirement already satisfied: numpy in /usr/local/lib/python3.6/dist-packages (from torch) (1.18.5)
-Requirement already satisfied: future in /usr/local/lib/python3.6/dist-packages (from torch) (0.16.0)
-Requirement already satisfied: pillow&gt;=4.1.1 in /usr/local/lib/python3.6/dist-packages (from torchvision) (7.0.0)
-Requirement already satisfied: pyro-api&gt;=0.1.1 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (0.1.2)
-Requirement already satisfied: opt-einsum&gt;=2.3.2 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (3.2.1)
-Requirement already satisfied: tqdm&gt;=4.36 in /usr/local/lib/python3.6/dist-packages (from pyro-ppl) (4.41.1)
-Requirement already satisfied: matplotlib in /usr/local/lib/python3.6/dist-packages (from proplot) (3.2.2)
-Requirement already satisfied: toml&gt;=0.9.4 in /usr/local/lib/python3.6/dist-packages (from black) (0.10.1)
-Requirement already satisfied: attrs&gt;=18.1.0 in /usr/local/lib/python3.6/dist-packages (from black) (19.3.0)
-Requirement already satisfied: appdirs in /usr/local/lib/python3.6/dist-packages (from black) (1.4.4)
-Requirement already satisfied: typed-ast&gt;=1.4.0 in /usr/local/lib/python3.6/dist-packages (from black) (1.4.1)
-Requirement already satisfied: regex in /usr/local/lib/python3.6/dist-packages (from black) (2019.12.20)
-Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /usr/local/lib/python3.6/dist-packages (from black) (0.8.0)
-Requirement already satisfied: click&gt;=6.5 in /usr/local/lib/python3.6/dist-packages (from black) (7.1.2)
-Requirement already satisfied: ipython in /usr/local/lib/python3.6/dist-packages (from blackcellmagic) (5.5.0)
-Requirement already satisfied: pandas&gt;=0.19 in /usr/local/lib/python3.6/dist-packages (from statsmodels) (1.0.5)
-Requirement already satisfied: scipy&gt;=0.18 in /usr/local/lib/python3.6/dist-packages (from statsmodels) (1.4.1)
-Requirement already satisfied: six in /usr/local/lib/python3.6/dist-packages (from patsy) (1.12.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (2.8.1)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (0.10.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (1.2.0)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;proplot) (2.4.7)
-Requirement already satisfied: pygments in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (2.1.3)
-Requirement already satisfied: prompt-toolkit&lt;2.0.0,&gt;=1.0.4 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (1.0.18)
-Requirement already satisfied: pickleshare in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (0.7.5)
-Requirement already satisfied: simplegeneric&gt;0.8 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (0.8.1)
-Requirement already satisfied: pexpect; sys_platform != &quot;win32&quot; in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.8.0)
-Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (47.3.1)
-Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.3.3)
-Requirement already satisfied: decorator in /usr/local/lib/python3.6/dist-packages (from ipython-&gt;blackcellmagic) (4.4.2)
-Requirement already satisfied: pytz&gt;=2017.2 in /usr/local/lib/python3.6/dist-packages (from pandas&gt;=0.19-&gt;statsmodels) (2018.9)
-Requirement already satisfied: wcwidth in /usr/local/lib/python3.6/dist-packages (from prompt-toolkit&lt;2.0.0,&gt;=1.0.4-&gt;ipython-&gt;blackcellmagic) (0.2.5)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.6/dist-packages (from pexpect; sys_platform != &quot;win32&quot;-&gt;ipython-&gt;blackcellmagic) (0.6.0)
-Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.5.0)
+Requirement already satisfied: torchvision in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.7.0)
+Requirement already satisfied: pyro-ppl in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.3.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.1)
+Requirement already satisfied: black in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (20.8b1)
+Requirement already satisfied: blackcellmagic in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.0.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting statsmodels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading statsmodels-0.12.0-cp37-cp37m-manylinux1_x86_64.whl (9.5 MB)
+?25l
+     |                                | 10 kB 9.7 MB/s eta 0:00:01
+     |                                | 20 kB 2.1 MB/s eta 0:00:05
+     |                                | 30 kB 2.9 MB/s eta 0:00:04
+     |▏                               | 40 kB 2.0 MB/s eta 0:00:05
+     |▏                               | 51 kB 2.4 MB/s eta 0:00:04
+     |▏                               | 61 kB 2.6 MB/s eta 0:00:04
+     |▎                               | 71 kB 2.9 MB/s eta 0:00:04
+     |▎                               | 81 kB 3.2 MB/s eta 0:00:03
+     |▎                               | 92 kB 3.4 MB/s eta 0:00:03
+     |▍                               | 102 kB 3.3 MB/s eta 0:00:03
+     |▍                               | 112 kB 3.3 MB/s eta 0:00:03
+     |▍                               | 122 kB 3.3 MB/s eta 0:00:03
+     |▌                               | 133 kB 3.3 MB/s eta 0:00:03
+     |▌                               | 143 kB 3.3 MB/s eta 0:00:03
+     |▌                               | 153 kB 3.3 MB/s eta 0:00:03
+     |▌                               | 163 kB 3.3 MB/s eta 0:00:03
+     |▋                               | 174 kB 3.3 MB/s eta 0:00:03
+     |▋                               | 184 kB 3.3 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |▋                               | 194 kB 3.3 MB/s eta 0:00:03
+     |▊                               | 204 kB 3.3 MB/s eta 0:00:03
+     |▊                               | 215 kB 3.3 MB/s eta 0:00:03
+     |▊                               | 225 kB 3.3 MB/s eta 0:00:03
+     |▉                               | 235 kB 3.3 MB/s eta 0:00:03
+     |▉                               | 245 kB 3.3 MB/s eta 0:00:03
+     |▉                               | 256 kB 3.3 MB/s eta 0:00:03
+     |█                               | 266 kB 3.3 MB/s eta 0:00:03
+     |█                               | 276 kB 3.3 MB/s eta 0:00:03
+     |█                               | 286 kB 3.3 MB/s eta 0:00:03
+     |█                               | 296 kB 3.3 MB/s eta 0:00:03
+     |█                               | 307 kB 3.3 MB/s eta 0:00:03
+     |█                               | 317 kB 3.3 MB/s eta 0:00:03
+     |█                               | 327 kB 3.3 MB/s eta 0:00:03
+     |█▏                              | 337 kB 3.3 MB/s eta 0:00:03
+     |█▏                              | 348 kB 3.3 MB/s eta 0:00:03
+     |█▏                              | 358 kB 3.3 MB/s eta 0:00:03
+     |█▎                              | 368 kB 3.3 MB/s eta 0:00:03
+     |█▎                              | 378 kB 3.3 MB/s eta 0:00:03
+     |█▎                              | 389 kB 3.3 MB/s eta 0:00:03
+     |█▍                              | 399 kB 3.3 MB/s eta 0:00:03
+     |█▍                              | 409 kB 3.3 MB/s eta 0:00:03
+     |█▍                              | 419 kB 3.3 MB/s eta 0:00:03
+     |█▌                              | 430 kB 3.3 MB/s eta 0:00:03
+     |█▌                              | 440 kB 3.3 MB/s eta 0:00:03
+     |█▌                              | 450 kB 3.3 MB/s eta 0:00:03
+     |█▋                              | 460 kB 3.3 MB/s eta 0:00:03
+     |█▋                              | 471 kB 3.3 MB/s eta 0:00:03
+     |█▋                              | 481 kB 3.3 MB/s eta 0:00:03
+     |█▋                              | 491 kB 3.3 MB/s eta 0:00:03
+     |█▊                              | 501 kB 3.3 MB/s eta 0:00:03
+     |█▊                              | 512 kB 3.3 MB/s eta 0:00:03
+     |█▊                              | 522 kB 3.3 MB/s eta 0:00:03
+     |█▉                              | 532 kB 3.3 MB/s eta 0:00:03
+     |█▉                              | 542 kB 3.3 MB/s eta 0:00:03
+     |█▉                              | 552 kB 3.3 MB/s eta 0:00:03
+     |██                              | 563 kB 3.3 MB/s eta 0:00:03
+     |██                              | 573 kB 3.3 MB/s eta 0:00:03
+     |██                              | 583 kB 3.3 MB/s eta 0:00:03
+     |██                              | 593 kB 3.3 MB/s eta 0:00:03
+     |██                              | 604 kB 3.3 MB/s eta 0:00:03
+     |██                              | 614 kB 3.3 MB/s eta 0:00:03
+     |██▏                             | 624 kB 3.3 MB/s eta 0:00:03
+     |██▏                             | 634 kB 3.3 MB/s eta 0:00:03
+     |██▏                             | 645 kB 3.3 MB/s eta 0:00:03
+     |██▏                             | 655 kB 3.3 MB/s eta 0:00:03
+     |██▎                             | 665 kB 3.3 MB/s eta 0:00:03
+     |██▎                             | 675 kB 3.3 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██▎                             | 686 kB 3.3 MB/s eta 0:00:03
+     |██▍                             | 696 kB 3.3 MB/s eta 0:00:03
+     |██▍                             | 706 kB 3.3 MB/s eta 0:00:03
+     |██▍                             | 716 kB 3.3 MB/s eta 0:00:03
+     |██▌                             | 727 kB 3.3 MB/s eta 0:00:03
+     |██▌                             | 737 kB 3.3 MB/s eta 0:00:03
+     |██▌                             | 747 kB 3.3 MB/s eta 0:00:03
+     |██▋                             | 757 kB 3.3 MB/s eta 0:00:03
+     |██▋                             | 768 kB 3.3 MB/s eta 0:00:03
+     |██▋                             | 778 kB 3.3 MB/s eta 0:00:03
+     |██▋                             | 788 kB 3.3 MB/s eta 0:00:03
+     |██▊                             | 798 kB 3.3 MB/s eta 0:00:03
+     |██▊                             | 808 kB 3.3 MB/s eta 0:00:03
+     |██▊                             | 819 kB 3.3 MB/s eta 0:00:03
+     |██▉                             | 829 kB 3.3 MB/s eta 0:00:03
+     |██▉                             | 839 kB 3.3 MB/s eta 0:00:03
+     |██▉                             | 849 kB 3.3 MB/s eta 0:00:03
+     |███                             | 860 kB 3.3 MB/s eta 0:00:03
+     |███                             | 870 kB 3.3 MB/s eta 0:00:03
+     |███                             | 880 kB 3.3 MB/s eta 0:00:03
+     |███                             | 890 kB 3.3 MB/s eta 0:00:03
+     |███                             | 901 kB 3.3 MB/s eta 0:00:03
+     |███                             | 911 kB 3.3 MB/s eta 0:00:03
+     |███▏                            | 921 kB 3.3 MB/s eta 0:00:03
+     |███▏                            | 931 kB 3.3 MB/s eta 0:00:03
+     |███▏                            | 942 kB 3.3 MB/s eta 0:00:03
+     |███▏                            | 952 kB 3.3 MB/s eta 0:00:03
+     |███▎                            | 962 kB 3.3 MB/s eta 0:00:03
+     |███▎                            | 972 kB 3.3 MB/s eta 0:00:03
+     |███▎                            | 983 kB 3.3 MB/s eta 0:00:03
+     |███▍                            | 993 kB 3.3 MB/s eta 0:00:03
+     |███▍                            | 1.0 MB 3.3 MB/s eta 0:00:03
+     |███▍                            | 1.0 MB 3.3 MB/s eta 0:00:03
+     |███▌                            | 1.0 MB 3.3 MB/s eta 0:00:03
+     |███▌                            | 1.0 MB 3.3 MB/s eta 0:00:03
+     |███▌                            | 1.0 MB 3.3 MB/s eta 0:00:03
+     |███▋                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▋                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▋                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▊                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▊                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▊                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▊                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▉                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▉                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |███▉                            | 1.1 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████                            | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████▏                           | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████▏                           | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████▏                           | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████▎                           | 1.2 MB 3.3 MB/s eta 0:00:03
+     |████▎                           | 1.3 MB 3.3 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████▎                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▎                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▍                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▍                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▍                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▌                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▌                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▌                           | 1.3 MB 3.3 MB/s eta 0:00:03
+     |████▋                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▋                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▋                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▊                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▊                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▊                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▉                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▉                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▉                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |████▉                           | 1.4 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████                           | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████▏                          | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████▏                          | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████▏                          | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████▎                          | 1.5 MB 3.3 MB/s eta 0:00:03
+     |█████▎                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▎                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▎                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▍                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▍                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▍                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▌                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▌                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▌                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▋                          | 1.6 MB 3.3 MB/s eta 0:00:03
+     |█████▋                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▋                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▊                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▊                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▊                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▉                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▉                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▉                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |█████▉                          | 1.7 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████                          | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████▏                         | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████▏                         | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████▏                         | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████▎                         | 1.8 MB 3.3 MB/s eta 0:00:03
+     |██████▎                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▎                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▍                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▍                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▍                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▍                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▌                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▌                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▌                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▋                         | 1.9 MB 3.3 MB/s eta 0:00:03
+     |██████▋                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▋                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▊                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▊                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▊                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▉                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▉                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |██████▉                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.0 MB 3.3 MB/s eta 0:00:03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████                         | 2.0 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████                         | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████▏                        | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████▏                        | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████▏                        | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████▎                        | 2.1 MB 3.3 MB/s eta 0:00:03
+     |███████▎                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▎                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▍                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▍                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▍                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▌                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▌                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▌                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▌                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▋                        | 2.2 MB 3.3 MB/s eta 0:00:03
+     |███████▋                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▋                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▊                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▊                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▊                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▉                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▉                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |███████▉                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.3 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████                        | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▏                       | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▏                       | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▏                       | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▎                       | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▎                       | 2.4 MB 3.3 MB/s eta 0:00:03
+     |████████▎                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▍                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▍                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▍                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▌                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▌                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▌                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▌                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▋                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▋                       | 2.5 MB 3.3 MB/s eta 0:00:03
+     |████████▋                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▊                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▊                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▊                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▉                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▉                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |████████▉                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.6 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████                       | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▏                      | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▏                      | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▏                      | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▎                      | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▎                      | 2.7 MB 3.3 MB/s eta 0:00:03
+     |█████████▎                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▍                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▍                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▍                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▌                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▌                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▌                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▋                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▋                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▋                      | 2.8 MB 3.3 MB/s eta 0:00:03
+     |█████████▋                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▊                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▊                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▊                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▉                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▉                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |█████████▉                      | 2.9 MB 3.3 MB/s eta 0:00:03
+     |██████████                      | 2.9 MB 3.3 MB/s eta 0:00:02
+     |██████████                      | 2.9 MB 3.3 MB/s eta 0:00:02
+     |██████████                      | 2.9 MB 3.3 MB/s eta 0:00:02
+     |██████████                      | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████                      | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████                      | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▏                     | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▏                     | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▏                     | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▏                     | 3.0 MB 3.3 MB/s eta 0:00:02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██████████▎                     | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▎                     | 3.0 MB 3.3 MB/s eta 0:00:02
+     |██████████▎                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▍                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▍                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▍                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▌                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▌                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▌                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▋                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▋                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▋                     | 3.1 MB 3.3 MB/s eta 0:00:02
+     |██████████▋                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▊                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▊                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▊                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▉                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▉                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |██████████▉                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.2 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████                     | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▏                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▏                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▏                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▏                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▎                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▎                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▎                    | 3.3 MB 3.3 MB/s eta 0:00:02
+     |███████████▍                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▍                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▍                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▌                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▌                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▌                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▋                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▋                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▋                    | 3.4 MB 3.3 MB/s eta 0:00:02
+     |███████████▊                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▊                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▊                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▊                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▉                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▉                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |███████████▉                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.5 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████                    | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▏                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▏                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▏                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▎                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▎                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▎                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▎                   | 3.6 MB 3.3 MB/s eta 0:00:02
+     |████████████▍                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▍                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▍                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▌                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▌                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▌                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▋                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▋                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▋                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▊                   | 3.7 MB 3.3 MB/s eta 0:00:02
+     |████████████▊                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |████████████▊                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |████████████▉                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |████████████▉                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |████████████▉                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |████████████▉                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.8 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████                   | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▏                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▏                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▏                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▎                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▎                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▎                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▎                  | 3.9 MB 3.3 MB/s eta 0:00:02
+     |█████████████▍                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▍                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▍                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▌                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▌                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▌                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▋                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▋                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▋                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▊                  | 4.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████▊                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████▊                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████▉                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████▉                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████▉                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████▉                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.1 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████                  | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▏                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▏                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▏                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▎                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▎                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▎                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▍                 | 4.2 MB 3.3 MB/s eta 0:00:02
+     |██████████████▍                 | 4.2 MB 3.3 MB/s eta 0:00:02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██████████████▍                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▍                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▌                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▌                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▌                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▋                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▋                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▋                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▊                 | 4.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████▊                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████▊                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████▉                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████▉                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████▉                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.4 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████                 | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▏                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▏                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▏                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▎                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▎                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▎                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▍                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▍                | 4.5 MB 3.3 MB/s eta 0:00:02
+     |███████████████▍                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▌                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▌                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▌                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▌                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▋                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▋                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▋                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▊                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▊                | 4.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████▊                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████▉                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████▉                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████▉                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.7 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████                | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▏               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▏               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▏               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▎               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▎               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▎               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▍               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▍               | 4.8 MB 3.3 MB/s eta 0:00:02
+     |████████████████▍               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▌               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▌               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▌               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▌               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▋               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▋               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▋               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▊               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▊               | 4.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████▊               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████▉               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████▉               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████▉               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.0 MB 3.3 MB/s eta 0:00:02
+     |█████████████████               | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▏              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▏              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▏              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▎              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▎              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▎              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▍              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▍              | 5.1 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▍              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▌              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▌              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▌              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▋              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▋              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▋              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▋              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▊              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▊              | 5.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▊              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▉              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▉              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |█████████████████▉              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████              | 5.3 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▏             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▏             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▏             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▏             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▎             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▎             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▎             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▍             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▍             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▍             | 5.4 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▌             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▌             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▌             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▋             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▋             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▋             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▋             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▊             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▊             | 5.5 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▊             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▉             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▉             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |██████████████████▉             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████             | 5.6 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▏            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▏            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▏            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▏            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▎            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▎            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▎            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▍            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▍            | 5.7 MB 3.3 MB/s eta 0:00:02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████████▍            | 5.7 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▌            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▌            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▌            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▋            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▋            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▋            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▊            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▊            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▊            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▊            | 5.8 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▉            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▉            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |███████████████████▉            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████            | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▏           | 5.9 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▏           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▏           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▎           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▎           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▎           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▎           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▍           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▍           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▍           | 6.0 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▌           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▌           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▌           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▋           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▋           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▋           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▊           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▊           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▊           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▉           | 6.1 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▉           | 6.2 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▉           | 6.2 MB 3.3 MB/s eta 0:00:02
+     |████████████████████▉           | 6.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:02
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████           | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▏          | 6.2 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▏          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▏          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▎          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▎          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▎          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▎          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▍          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▍          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▍          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▌          | 6.3 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▌          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▌          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▋          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▋          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▋          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▊          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▊          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▊          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▉          | 6.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▉          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▉          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████▉          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████          | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▏         | 6.5 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▏         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▏         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▎         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▎         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▎         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▍         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▍         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▍         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▍         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▌         | 6.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▌         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▌         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▋         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▋         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▋         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▊         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▊         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▊         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▉         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▉         | 6.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████▉         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████         | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▏        | 6.8 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▏        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▏        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▎        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▎        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▎        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▍        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▍        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▍        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▌        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▌        | 6.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▌        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▌        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▋        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▋        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▋        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▊        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▊        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▊        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▉        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▉        | 7.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████▉        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████        | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▏       | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▏       | 7.1 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▏       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▎       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▎       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▎       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▍       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▍       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▍       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▌       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▌       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▌       | 7.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▌       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▋       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▋       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▋       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▊       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▊       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▊       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▉       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▉       | 7.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████▉       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████       | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▏      | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▏      | 7.4 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▏      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▎      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▎      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▎      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▍      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▍      | 7.5 MB 3.3 MB/s eta 0:00:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████████████████████████▍      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▌      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▌      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▌      | 7.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▋      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▋      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▋      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▋      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▊      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▊      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▊      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▉      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▉      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████▉      | 7.6 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████      | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▏     | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▏     | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▏     | 7.7 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▏     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▎     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▎     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▎     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▍     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▍     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▍     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▌     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▌     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▌     | 7.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▋     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▋     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▋     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▋     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▊     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▊     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▊     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▉     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▉     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████▉     | 7.9 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████     | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▏    | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▏    | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▏    | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▏    | 8.0 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▎    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▎    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▎    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▍    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▍    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▍    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▌    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▌    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▌    | 8.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▋    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▋    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▋    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▊    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▊    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▊    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▊    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▉    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▉    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████▉    | 8.2 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████    | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▏   | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▏   | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▏   | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▎   | 8.3 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▎   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▎   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▎   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▍   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▍   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▍   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▌   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▌   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▌   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▋   | 8.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▋   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▋   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▊   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▊   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▊   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▉   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▉   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▉   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████▉   | 8.5 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████   | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▏  | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▏  | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▏  | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 8.6 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▎  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▍  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▍  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▍  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▌  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▌  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▌  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▋  | 8.7 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▋  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▋  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |█████████████████████████████▉  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.8 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████  | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▏ | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▏ | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▏ | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▎ | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▎ | 8.9 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▎ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▍ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▌ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▌ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▌ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▋ | 9.0 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▋ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▋ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▊ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▊ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▊ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▉ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▉ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |██████████████████████████████▉ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.1 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████ | 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▏| 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▏| 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▏| 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▎| 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▎| 9.2 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▎| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▍| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▍| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▍| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▌| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▌| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▌| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▌| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▋| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▋| 9.3 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▋| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▊| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▊| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▊| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▉| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▉| 9.4 MB 3.3 MB/s eta 0:00:01
+     |███████████████████████████████▉| 9.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████████| 9.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████████| 9.4 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████████| 9.5 MB 3.3 MB/s eta 0:00:01
+     |████████████████████████████████| 9.5 MB 3.3 MB/s eta 0:00:01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████████████████████████████████| 9.5 MB 3.3 MB/s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hCollecting patsy
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading patsy-0.5.1-py2.py3-none-any.whl (231 kB)
+?25l
+     |█▍                              | 10 kB 43.3 MB/s eta 0:00:01
+     |██▉                             | 20 kB 45.4 MB/s eta 0:00:01
+     |████▎                           | 30 kB 54.5 MB/s eta 0:00:01
+     |█████▊                          | 40 kB 59.6 MB/s eta 0:00:01
+     |███████                         | 51 kB 62.9 MB/s eta 0:00:01
+     |████████▌                       | 61 kB 67.8 MB/s eta 0:00:01
+     |██████████                      | 71 kB 70.5 MB/s eta 0:00:01
+     |███████████▍                    | 81 kB 73.5 MB/s eta 0:00:01
+     |████████████▊                   | 92 kB 74.7 MB/s eta 0:00:01
+     |██████████████▏                 | 102 kB 76.6 MB/s eta 0:00:01
+     |███████████████▋                | 112 kB 76.6 MB/s eta 0:00:01
+     |█████████████████               | 122 kB 76.6 MB/s eta 0:00:01
+     |██████████████████▍             | 133 kB 76.6 MB/s eta 0:00:01
+     |███████████████████▉            | 143 kB 76.6 MB/s eta 0:00:01
+     |█████████████████████▎          | 153 kB 76.6 MB/s eta 0:00:01
+     |██████████████████████▊         | 163 kB 76.6 MB/s eta 0:00:01
+     |████████████████████████        | 174 kB 76.6 MB/s eta 0:00:01
+     |█████████████████████████▌      | 184 kB 76.6 MB/s eta 0:00:01
+     |███████████████████████████     | 194 kB 76.6 MB/s eta 0:00:01
+     |████████████████████████████▍   | 204 kB 76.6 MB/s eta 0:00:01
+     |█████████████████████████████▊  | 215 kB 76.6 MB/s eta 0:00:01
+     |███████████████████████████████▏| 225 kB 76.6 MB/s eta 0:00:01
+     |████████████████████████████████| 231 kB 76.6 MB/s 
+?25hRequirement already satisfied: future in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (0.18.2)
+Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (1.17.0)
+Requirement already satisfied: pillow&gt;=4.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torchvision) (7.2.0)
+Requirement already satisfied: opt-einsum&gt;=2.3.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (3.3.0)
+Requirement already satisfied: pyro-api&gt;=0.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (0.1.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tqdm&gt;=4.36 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (4.48.2)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.2.1)
+Requirement already satisfied: typing-extensions&gt;=3.7.4 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (3.7.4.3)
+Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.8.0)
+Requirement already satisfied: mypy-extensions&gt;=0.4.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.4.3)
+Requirement already satisfied: click&gt;=7.1.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (7.1.2)
+Requirement already satisfied: appdirs in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.4)
+Requirement already satisfied: regex&gt;=2020.1.8 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (2020.7.14)
+Requirement already satisfied: typed-ast&gt;=1.4.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.1)
+Requirement already satisfied: toml&gt;=0.10.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.10.1)
+Requirement already satisfied: ipython in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from blackcellmagic) (7.18.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy&gt;=1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from statsmodels) (1.4.1)
+Requirement already satisfied: pandas&gt;=0.21 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from statsmodels) (1.0.3)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from patsy) (1.15.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: jedi&gt;=0.16 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.17.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (3.0.6)
+Requirement already satisfied: decorator in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.4.2)
+Requirement already satisfied: backcall in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.2.0)
+Requirement already satisfied: traitlets&gt;=4.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.3.3)
+Requirement already satisfied: pexpect&gt;4.3; sys_platform != &quot;win32&quot; in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.8.0)
+Requirement already satisfied: pygments in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (2.6.1)
+Requirement already satisfied: setuptools&gt;=18.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (47.1.0)
+Requirement already satisfied: pickleshare in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.7.5)
+Requirement already satisfied: pytz&gt;=2017.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pandas&gt;=0.21-&gt;statsmodels) (2020.1)
+Requirement already satisfied: parso&lt;0.8.0,&gt;=0.7.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;blackcellmagic) (0.7.1)
+Requirement already satisfied: wcwidth in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython-&gt;blackcellmagic) (0.2.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ipython-genutils in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pexpect&gt;4.3; sys_platform != &quot;win32&quot;-&gt;ipython-&gt;blackcellmagic) (0.6.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: patsy, statsmodels
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed patsy-0.5.1 statsmodels-0.12.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">blackcellmagic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> blackcellmagic
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -248,7 +1247,7 @@ Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist
 <span class="kn">from</span> <span class="nn">pyro.contrib.autoguide</span> <span class="kn">import</span> <span class="n">AutoLaplaceApproximation</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">pylab</span> inline
 <span class="n">pyro</span><span class="o">.</span><span class="n">set_rng_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
@@ -257,24 +1256,84 @@ Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.6/dist-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.
-  import pandas.util.testing as tm
-</pre></div>
-</div>
 </div>
 </div>
 </div>
 <div class="section" id="code-6-1">
-<h1><span class="section-number">6. </span>Code 6.1<a class="headerlink" href="#code-6-1" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">5.1. </span>Code 6.1<a class="headerlink" href="#code-6-1" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install torch torchvision pyro-ppl proplot black blackcellmagic statsmodels patsy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torch in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.5.0)
+Requirement already satisfied: torchvision in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.7.0)
+Requirement already satisfied: pyro-ppl in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (1.3.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.1)
+Requirement already satisfied: black in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (20.8b1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: blackcellmagic in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.0.2)
+Requirement already satisfied: statsmodels in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.12.0)
+Requirement already satisfied: patsy in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.5.1)
+Requirement already satisfied: future in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (0.18.2)
+Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torch) (1.17.0)
+Requirement already satisfied: pillow&gt;=4.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from torchvision) (7.2.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tqdm&gt;=4.36 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (4.48.2)
+Requirement already satisfied: pyro-api&gt;=0.1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (0.1.2)
+Requirement already satisfied: opt-einsum&gt;=2.3.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pyro-ppl) (3.3.0)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.2.1)
+Requirement already satisfied: pathspec&lt;1,&gt;=0.6 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.8.0)
+Requirement already satisfied: appdirs in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.4)
+Requirement already satisfied: typing-extensions&gt;=3.7.4 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (3.7.4.3)
+Requirement already satisfied: typed-ast&gt;=1.4.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (1.4.1)
+Requirement already satisfied: mypy-extensions&gt;=0.4.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.4.3)
+Requirement already satisfied: click&gt;=7.1.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (7.1.2)
+Requirement already satisfied: toml&gt;=0.10.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (0.10.1)
+Requirement already satisfied: regex&gt;=2020.1.8 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from black) (2020.7.14)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ipython in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from blackcellmagic) (7.18.0)
+Requirement already satisfied: scipy&gt;=1.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from statsmodels) (1.4.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=0.21 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from statsmodels) (1.0.3)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from patsy) (1.15.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: decorator in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.4.2)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (3.0.6)
+Requirement already satisfied: pickleshare in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.7.5)
+Requirement already satisfied: jedi&gt;=0.16 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.17.2)
+Requirement already satisfied: setuptools&gt;=18.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (47.1.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pygments in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (2.6.1)
+Requirement already satisfied: backcall in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (0.2.0)
+Requirement already satisfied: pexpect&gt;4.3; sys_platform != &quot;win32&quot; in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.8.0)
+Requirement already satisfied: traitlets&gt;=4.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from ipython-&gt;blackcellmagic) (4.3.3)
+Requirement already satisfied: pytz&gt;=2017.2 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pandas&gt;=0.21-&gt;statsmodels) (2020.1)
+Requirement already satisfied: wcwidth in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython-&gt;blackcellmagic) (0.2.5)
+Requirement already satisfied: parso&lt;0.8.0,&gt;=0.7.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from jedi&gt;=0.16-&gt;ipython-&gt;blackcellmagic) (0.7.1)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from pexpect&gt;4.3; sys_platform != &quot;win32&quot;-&gt;ipython-&gt;blackcellmagic) (0.6.0)
+Requirement already satisfied: ipython-genutils in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from traitlets&gt;=4.2-&gt;ipython-&gt;blackcellmagic) (0.2.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.tensor</span> <span class="k">as</span> <span class="nn">tensor</span>
 <span class="kn">import</span> <span class="nn">pyro</span>
@@ -319,67 +1378,165 @@ Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 922617.0140
-[iteration 0101] loss: 736301.3414
-[iteration 0201] loss: 597407.8432
-[iteration 0301] loss: 467509.3486
-[iteration 0401] loss: 365105.8928
-[iteration 0501] loss: 286934.9869
-[iteration 0601] loss: 217594.9398
-[iteration 0701] loss: 165312.7858
-[iteration 0801] loss: 121732.0647
-[iteration 0901] loss: 94113.1033
-[iteration 1001] loss: 71102.8468
-[iteration 1101] loss: 55977.4891
-[iteration 1201] loss: 43756.8428
-[iteration 1301] loss: 36727.4556
-[iteration 1401] loss: 30650.4078
-[iteration 1501] loss: 28724.8164
-[iteration 1601] loss: 26610.1936
-[iteration 1701] loss: 25622.7252
-[iteration 1801] loss: 24928.6907
-[iteration 1901] loss: 24721.7366
-[iteration 2001] loss: 24464.8411
-[iteration 2101] loss: 24283.6640
-[iteration 2201] loss: 24243.5505
-[iteration 2301] loss: 24215.0529
-[iteration 2401] loss: 24222.8154
-[iteration 2501] loss: 24209.6450
-[iteration 2601] loss: 24212.2392
-[iteration 2701] loss: 24212.2720
-[iteration 2801] loss: 24206.0991
-[iteration 2901] loss: 24204.4869
-[iteration 3001] loss: 24204.8578
-[iteration 3101] loss: 24203.9615
-[iteration 3201] loss: 24199.1800
-[iteration 3301] loss: 24199.4095
-[iteration 3401] loss: 24195.1827
-[iteration 3501] loss: 24197.1072
-[iteration 3601] loss: 24198.8789
-[iteration 3701] loss: 24191.1596
-[iteration 3801] loss: 24186.4128
-[iteration 3901] loss: 24179.6238
-[iteration 4001] loss: 24193.7353
-[iteration 4101] loss: 24177.3508
-[iteration 4201] loss: 24170.1165
-[iteration 4301] loss: 24168.5186
-[iteration 4401] loss: 24163.6002
-[iteration 4501] loss: 24161.5777
-[iteration 4601] loss: 24155.3574
-[iteration 4701] loss: 24149.1734
-[iteration 4801] loss: 24143.9461
-[iteration 4901] loss: 24143.7691
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 124733.5842
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(20.3188), tensor(20.4905), tensor(20.6623)],
- &#39;weight&#39;: [tensor(15.4664), tensor(15.4902), tensor(15.5140)]}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0101] loss: 74004.5805
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0201] loss: 46515.2303
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0301] loss: 33109.2908
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0401] loss: 27733.2358
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0501] loss: 25618.5655
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0601] loss: 25289.5729
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0701] loss: 25034.2776
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0801] loss: 25023.3263
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0901] loss: 25029.7554
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1001] loss: 25011.1490
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1101] loss: 25016.0217
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1201] loss: 25000.9326
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1301] loss: 24994.1032
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1401] loss: 24990.6098
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1501] loss: 24994.1014
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1601] loss: 24983.2122
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1701] loss: 24964.5205
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1801] loss: 24964.6140
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1901] loss: 24955.8795
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2001] loss: 24942.3134
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2101] loss: 24938.5891
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2201] loss: 24925.3608
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2301] loss: 24914.7651
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2401] loss: 24908.6418
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2501] loss: 24897.4198
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2601] loss: 24888.7264
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2701] loss: 24867.3429
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2801] loss: 24856.0319
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2901] loss: 24854.7194
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3001] loss: 24833.0259
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3101] loss: 24813.5609
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3201] loss: 24803.6557
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3301] loss: 24781.8604
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3401] loss: 24767.0788
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3501] loss: 24755.1060
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3601] loss: 24736.5617
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3701] loss: 24721.7683
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3801] loss: 24695.6219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3901] loss: 24679.6720
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4001] loss: 24659.0074
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4101] loss: 24635.8537
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4201] loss: 24614.3625
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4301] loss: 24589.9883
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4401] loss: 24576.6697
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4501] loss: 24559.9539
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4601] loss: 24531.1015
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4701] loss: 24516.1180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4801] loss: 24486.0372
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4901] loss: 24467.1151
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;weight&#39;: [tensor(14.9593), tensor(14.9719), tensor(14.9846)],
+ &#39;bias&#39;: [tensor(44.7712), tensor(44.9555), tensor(45.1397)]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
@@ -389,19 +1546,19 @@ Requirement already satisfied: ipython-genutils in /usr/local/lib/python3.6/dist
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
-tensor([ 16.7326, -38.7955])
-AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
+tensor([14.9719, 44.9555])
+AutoDiagonalNormal.scale tensor([0.0187, 0.2732])
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-38.9142), tensor(-38.7955), tensor(-38.6767)],
- &#39;weight&#39;: [tensor(16.7250), tensor(16.7326), tensor(16.7403)]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;weight&#39;: [tensor(14.9593), tensor(14.9719), tensor(14.9846)],
+ &#39;bias&#39;: [tensor(44.7712), tensor(44.9555), tensor(45.1397)]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
   <span class="c1">#sigma = pyro.sample(&quot;sigma&quot;, dist.HalfCauchy(2.))</span>
   
   <span class="n">sigma</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">))</span>
@@ -450,15 +1607,15 @@ AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57d8b128d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe7233c0910&gt;]
 </pre></div>
 </div>
-<img alt="../_images/06_Chapter06_7_1.png" src="../_images/06_Chapter06_7_1.png" />
+<img alt="../_images/06_Chapter06_8_1.png" src="../_images/06_Chapter06_8_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.infer</span> <span class="kn">import</span> <span class="n">SVI</span><span class="p">,</span> <span class="n">Trace_ELBO</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.infer</span> <span class="kn">import</span> <span class="n">SVI</span><span class="p">,</span> <span class="n">Trace_ELBO</span>
 <span class="kn">from</span> <span class="nn">pyro.infer.autoguide</span> <span class="kn">import</span> <span class="n">AutoDiagonalNormal</span>
 
 <span class="k">def</span> <span class="nf">modelLM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -490,67 +1647,165 @@ AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 233790.9992
-[iteration 0101] loss: 54766.2408
-[iteration 0201] loss: 26296.1646
-[iteration 0301] loss: 25091.1893
-[iteration 0401] loss: 25069.8338
-[iteration 0501] loss: 25055.3571
-[iteration 0601] loss: 25058.1818
-[iteration 0701] loss: 25030.7960
-[iteration 0801] loss: 25014.5342
-[iteration 0901] loss: 24997.5771
-[iteration 1001] loss: 24976.4261
-[iteration 1101] loss: 24961.4700
-[iteration 1201] loss: 24941.4946
-[iteration 1301] loss: 24916.0623
-[iteration 1401] loss: 24893.0335
-[iteration 1501] loss: 24871.4338
-[iteration 1601] loss: 24843.1331
-[iteration 1701] loss: 24811.1419
-[iteration 1801] loss: 24787.4239
-[iteration 1901] loss: 24762.4270
-[iteration 2001] loss: 24720.0782
-[iteration 2101] loss: 24699.4856
-[iteration 2201] loss: 24658.9981
-[iteration 2301] loss: 24617.8488
-[iteration 2401] loss: 24586.5736
-[iteration 2501] loss: 24553.2592
-[iteration 2601] loss: 24517.7130
-[iteration 2701] loss: 24481.6459
-[iteration 2801] loss: 24434.6413
-[iteration 2901] loss: 24400.3492
-[iteration 3001] loss: 24358.7223
-[iteration 3101] loss: 24309.3678
-[iteration 3201] loss: 24268.8241
-[iteration 3301] loss: 24223.0639
-[iteration 3401] loss: 24178.8132
-[iteration 3501] loss: 24134.1093
-[iteration 3601] loss: 24089.2851
-[iteration 3701] loss: 24037.2571
-[iteration 3801] loss: 23995.5859
-[iteration 3901] loss: 23949.2654
-[iteration 4001] loss: 23898.2613
-[iteration 4101] loss: 23854.2809
-[iteration 4201] loss: 23799.4264
-[iteration 4301] loss: 23751.3402
-[iteration 4401] loss: 23708.6682
-[iteration 4501] loss: 23662.6529
-[iteration 4601] loss: 23615.6218
-[iteration 4701] loss: 23572.5174
-[iteration 4801] loss: 23528.9294
-[iteration 4901] loss: 23489.1542
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 325443.0306
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f57d4c4e208&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0101] loss: 86196.9888
 </pre></div>
 </div>
-<img alt="../_images/06_Chapter06_8_2.png" src="../_images/06_Chapter06_8_2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0201] loss: 30485.7308
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0301] loss: 24183.2562
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0401] loss: 23718.8910
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0501] loss: 23753.0335
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0601] loss: 23713.7643
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0701] loss: 23707.4406
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0801] loss: 23696.3865
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0901] loss: 23689.9150
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1001] loss: 23686.0242
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1101] loss: 23676.1173
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1201] loss: 23673.7182
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1301] loss: 23665.9799
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1401] loss: 23654.5483
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1501] loss: 23650.4402
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1601] loss: 23636.7630
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1701] loss: 23630.7053
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1801] loss: 23614.8094
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1901] loss: 23612.0588
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2001] loss: 23599.0467
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2101] loss: 23589.3491
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2201] loss: 23580.1197
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2301] loss: 23565.1825
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2401] loss: 23554.5085
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2501] loss: 23543.7427
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2601] loss: 23530.2560
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2701] loss: 23514.2721
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2801] loss: 23500.3801
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2901] loss: 23488.2888
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3001] loss: 23464.1922
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3101] loss: 23452.9838
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3201] loss: 23436.2243
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3301] loss: 23418.8599
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3401] loss: 23402.7090
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3501] loss: 23387.5023
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3601] loss: 23368.4689
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3701] loss: 23352.3317
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3801] loss: 23332.7340
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3901] loss: 23314.9798
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4001] loss: 23297.6455
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4101] loss: 23275.3138
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4201] loss: 23257.3989
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4301] loss: 23235.1527
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4401] loss: 23220.3387
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4501] loss: 23198.2162
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4601] loss: 23177.3216
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4701] loss: 23158.4120
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4801] loss: 23135.5196
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4901] loss: 23115.7369
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe7229e41d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/06_Chapter06_9_51.png" src="../_images/06_Chapter06_9_51.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -562,7 +1817,7 @@ AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
@@ -572,19 +1827,19 @@ AutoDiagonalNormal.scale tensor([0.0113, 0.1760])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
-tensor([-51.5508,  16.9979])
-AutoDiagonalNormal.scale tensor([0.3538, 0.0114])
+tensor([-100.1629,   18.0064])
+AutoDiagonalNormal.scale tensor([0.9137, 0.0137])
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-51.7895), tensor(-51.5508), tensor(-51.3122)],
- &#39;weight&#39;: [tensor(16.9902), tensor(16.9979), tensor(17.0056)]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-100.7792), tensor(-100.1629), tensor(-99.5466)],
+ &#39;weight&#39;: [tensor(17.9971), tensor(18.0064), tensor(18.0156)]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
@@ -593,39 +1848,20 @@ AutoDiagonalNormal.scale tensor([0.3538, 0.0114])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AutoLaplaceApproximation.loc Parameter containing:
-tensor([ 20.6599, 351.9877])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
+tensor([-100.1629,   18.0064])
+AutoDiagonalNormal.scale tensor([0.9137, 0.0137])
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-48-cbfcc17eba69&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">guide</span><span class="o">.</span><span class="n">quantiles</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
-
-<span class="nn">/usr/local/lib/python3.6/dist-packages/pyro/infer/autoguide/guides.py</span> in <span class="ni">quantiles</span><span class="nt">(self, quantiles, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>         <span class="p">:</span><span class="n">rtype</span><span class="p">:</span> <span class="nb">dict</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">730</span><span class="sd">         loc, scale = self._loc_scale(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span><span class="sd">         quantiles = torch.tensor(quantiles, dtype=loc.dtype, device=loc.device).unsqueeze(-1)</span>
-<span class="g g-Whitespace">    </span><span class="mi">732</span><span class="sd">         latents = dist.Normal(loc, scale).icdf(quantiles)</span>
-
-<span class="nn">/usr/local/lib/python3.6/dist-packages/pyro/infer/autoguide/guides.py</span> in <span class="ni">_loc_scale</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="sd">             :meth:`quantiles`</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">706</span>         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span> 
-<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="k">def</span> <span class="nf">median</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-<span class="ne">NotImplementedError</span>: 
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bias&#39;: [tensor(-100.7792), tensor(-100.1629), tensor(-99.5466)],
+ &#39;weight&#39;: [tensor(17.9971), tensor(18.0064), tensor(18.0156)]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.nn</span> <span class="kn">import</span> <span class="n">PyroSample</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyro.nn</span> <span class="kn">import</span> <span class="n">PyroSample</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">from</span> <span class="nn">pyro.nn</span> <span class="kn">import</span> <span class="n">PyroModule</span>
 <span class="kn">from</span> <span class="nn">pyro.infer.autoguide</span> <span class="kn">import</span> <span class="n">AutoDiagonalNormal</span>
@@ -662,63 +1898,161 @@ tensor([ 20.6599, 351.9877])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 2256713.6311
-[iteration 0101] loss: 1611672.6334
-[iteration 0201] loss: 1152250.9338
-[iteration 0301] loss: 823457.5973
-[iteration 0401] loss: 638191.6492
-[iteration 0501] loss: 517771.8575
-[iteration 0601] loss: 456630.1136
-[iteration 0701] loss: 425245.6357
-[iteration 0801] loss: 409288.2073
-[iteration 0901] loss: 400613.0964
-[iteration 1001] loss: 397583.8878
-[iteration 1101] loss: 396388.7844
-[iteration 1201] loss: 395542.3466
-[iteration 1301] loss: 395340.0239
-[iteration 1401] loss: 395266.2926
-[iteration 1501] loss: 395132.2250
-[iteration 1601] loss: 395011.0164
-[iteration 1701] loss: 394902.2548
-[iteration 1801] loss: 394754.8238
-[iteration 1901] loss: 394743.1801
-[iteration 2001] loss: 394458.3846
-[iteration 2101] loss: 394352.4667
-[iteration 2201] loss: 394148.2777
-[iteration 2301] loss: 393974.8461
-[iteration 2401] loss: 393814.8561
-[iteration 2501] loss: 393627.5515
-[iteration 2601] loss: 393398.9890
-[iteration 2701] loss: 393228.6202
-[iteration 2801] loss: 393003.4653
-[iteration 2901] loss: 392775.4217
-[iteration 3001] loss: 392533.2755
-[iteration 3101] loss: 392315.0405
-[iteration 3201] loss: 392057.7322
-[iteration 3301] loss: 391763.6521
-[iteration 3401] loss: 391502.6946
-[iteration 3501] loss: 391217.5938
-[iteration 3601] loss: 390923.7363
-[iteration 3701] loss: 390593.2368
-[iteration 3801] loss: 390304.2928
-[iteration 3901] loss: 389932.5006
-[iteration 4001] loss: 389603.2170
-[iteration 4101] loss: 389252.4493
-[iteration 4201] loss: 388866.0080
-[iteration 4301] loss: 388497.1606
-[iteration 4401] loss: 388099.9950
-[iteration 4501] loss: 387701.7419
-[iteration 4601] loss: 387303.6899
-[iteration 4701] loss: 386859.7767
-[iteration 4801] loss: 386422.9781
-[iteration 4901] loss: 385972.0114
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0001] loss: 2280797.1426
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0101] loss: 1612431.4019
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0201] loss: 1151337.8674
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0301] loss: 857165.6141
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0401] loss: 684532.3046
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0501] loss: 574005.8338
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0601] loss: 471863.2801
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0701] loss: 429997.8856
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0801] loss: 414210.6893
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 0901] loss: 408141.7803
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1001] loss: 404559.5984
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1101] loss: 402967.1340
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1201] loss: 402883.9007
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1301] loss: 402498.4033
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1401] loss: 402507.9090
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1501] loss: 402326.1818
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1601] loss: 402007.1080
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1701] loss: 402255.7705
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1801] loss: 402565.5613
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 1901] loss: 401843.3569
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2001] loss: 401691.6365
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2101] loss: 401838.3531
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2201] loss: 401438.3765
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2301] loss: 401275.7682
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2401] loss: 400948.3761
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2501] loss: 400918.8475
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2601] loss: 400662.2107
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2701] loss: 400353.0184
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2801] loss: 400331.6692
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 2901] loss: 399970.3887
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3001] loss: 399575.9734
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3101] loss: 399251.3489
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3201] loss: 399010.6192
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3301] loss: 398913.3971
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3401] loss: 398508.1008
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3501] loss: 398325.1453
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3601] loss: 398437.7571
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3701] loss: 397630.5818
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3801] loss: 397207.0757
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 3901] loss: 396777.9219
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4001] loss: 396541.1523
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4101] loss: 396146.8030
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4201] loss: 395647.8179
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4301] loss: 395397.6972
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4401] loss: 395026.4361
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4501] loss: 394518.2253
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4601] loss: 394103.1012
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4701] loss: 393694.0898
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4801] loss: 393157.0105
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[iteration 4901] loss: 392731.0847
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guide</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pyro</span><span class="o">.</span><span class="n">get_param_store</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
@@ -728,21 +2062,21 @@ tensor([ 20.6599, 351.9877])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AutoDiagonalNormal.loc Parameter containing:
-tensor([14.0674, 42.6264])
-AutoDiagonalNormal.scale tensor([0.0232, 0.0266])
+tensor([14.6845, 13.0673])
+AutoDiagonalNormal.scale tensor([0.0250, 0.6258])
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;linear.bias&#39;: [tensor([42.6085]), tensor([42.6264]), tensor([42.6444])],
- &#39;linear.weight&#39;: [tensor([[14.0517]]),
-  tensor([[14.0674]]),
-  tensor([[14.0830]])]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;linear.weight&#39;: [tensor([[14.6677]]),
+  tensor([[14.6845]]),
+  tensor([[14.7014]])],
+ &#39;linear.bias&#39;: [tensor([12.6452]), tensor([13.0673]), tensor([13.4894])]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_URL</span> <span class="o">=</span> <span class="s2">&quot;https://d2hg8soec8ck9v.cloudfront.net/datasets/rugged_data.csv&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_URL</span> <span class="o">=</span> <span class="s2">&quot;https://d2hg8soec8ck9v.cloudfront.net/datasets/rugged_data.csv&quot;</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_URL</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;cont_africa&quot;</span><span class="p">,</span> <span class="s2">&quot;rugged&quot;</span><span class="p">,</span> <span class="s2">&quot;rgdppc_2000&quot;</span><span class="p">]]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rgdppc_2000</span><span class="p">)]</span>
@@ -764,31 +2098,43 @@ AutoDiagonalNormal.scale tensor([0.0232, 0.0266])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="c1">#.shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span><span class="c1">#.shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([37.0000, 35.5000, 34.5000, 41.5000, 55.5000, 61.0000, 53.5000])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[37.0000],
+        [35.5000],
+        [34.5000],
+        [41.5000],
+        [55.5000],
+        [61.0000],
+        [53.5000]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brain</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brain</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 438.,  452.,  612.,  521.,  752.,  871., 1350.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 438.],
+        [ 452.],
+        [ 612.],
+        [ 521.],
+        [ 752.],
+        [ 871.],
+        [1350.]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bias = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_bias_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="c1">#print(&quot;sigma = &quot;, pyro.param(&quot;sigma&quot;).item())</span>
 
@@ -803,18 +2149,51 @@ AutoDiagonalNormal.scale tensor([0.0232, 0.0266])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weight =  10.068291664123535
-bias =  54.50359344482422
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(0.3610)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">16</span><span class="o">-</span><span class="n">c82e8977fef2</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bias = &quot;</span><span class="p">,</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_bias_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#print(&quot;sigma = &quot;, pyro.param(&quot;sigma&quot;).item())</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">pyro</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mean_weight_param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/pyro/primitives.py</span> in <span class="ni">param</span><span class="nt">(name, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">     kwargs[&quot;name&quot;] = name</span>
+<span class="ne">---&gt; </span><span class="mi">61</span><span class="sd">     return _param(name, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="sd"> </span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/pyro/poutine/runtime.py</span> in <span class="ni">_fn</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span><span class="sd">         if not am_i_wrapped():</span>
+<span class="ne">--&gt; </span><span class="mi">244</span><span class="sd">             return fn(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span><span class="sd">         else:</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span><span class="sd">             msg = {</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/pyro/params/param_store.py</span> in <span class="ni">get_param</span><span class="nt">(self, name, init_tensor, constraint, event_dim)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="k">if</span> <span class="n">init_tensor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">203</span>             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">init_tensor</span><span class="p">,</span> <span class="n">constraint</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/pyro/params/param_store.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>         <span class="n">Get</span> <span class="n">the</span> <span class="n">constrained</span> <span class="n">value</span> <span class="n">of</span> <span class="n">a</span> <span class="n">named</span> <span class="n">parameter</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">101</span><span class="s2">         unconstrained_value = self._params[name]</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="s2">         # compute the constrained value</span>
+
+<span class="ne">KeyError</span>: &#39;mean_weight_param&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;brain ~ mass&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -850,6 +2229,7 @@ Kurtosis:                       3.548   Cond. No.                         215.
 Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
+</div>
 </div>
 </div>
 </div>
