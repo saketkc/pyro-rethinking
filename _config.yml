@@ -2,6 +2,21 @@
 title: Statistical Rethinking in Pyro
 author: Saket Choudhary 
 
+execute:
+  execute_notebooks: force
+
 latex:
   latex_documents:
     targetname: book.tex
+
+repository:
+  url: https://github.com/saketkc/pyro-rethinking  # Online location of your book
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+  google_analytics_id: G-P44SXDMDZC
+
+sphinx:
+  extra_extensions:  ['sphinxcontrib.gtagjs'] 
+  config: {"gtagjs_ids": ["G-P44SXDMDZC"]} 
