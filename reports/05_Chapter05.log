@@ -1,0 +1,74 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/client.py", line 1087, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/client.py", line 541, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/client.py", line 832, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+precis = summary(pred53.get_samples())
+precis = precis.drop(columns = ["_AutoMultivariateNormal_latent"]).T
+fig, ax = plt.subplots()
+sns.pointplot(precis["mean"], precis.index, join=False, ax=ax)
+for i, param in enumerate(precis.index):
+  sns.lineplot(np.hstack(precis.loc[param, ["5.0%", "95.0%"]].values), [i, i], color="k", ax=ax)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-8-13880436d307>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0mprecis[0m [0;34m=[0m [0mprecis[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mcolumns[0m [0;34m=[0m [0;34m[[0m[0;34m"_AutoMultivariateNormal_latent"[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0mT[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mfig[0m[0;34m,[0m [0max[0m [0;34m=[0m [0mplt[0m[0;34m.[0m[0msubplots[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0msns[0m[0;34m.[0m[0mpointplot[0m[0;34m([0m[0mprecis[0m[0;34m[[0m[0;34m"mean"[0m[0;34m][0m[0;34m,[0m [0mprecis[0m[0;34m.[0m[0mindex[0m[0;34m,[0m [0mjoin[0m[0;34m=[0m[0;32mFalse[0m[0;34m,[0m [0max[0m[0;34m=[0m[0max[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;32mfor[0m [0mi[0m[0;34m,[0m [0mparam[0m [0;32min[0m [0menumerate[0m[0;34m([0m[0mprecis[0m[0;34m.[0m[0mindex[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m   [0msns[0m[0;34m.[0m[0mlineplot[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mhstack[0m[0;34m([0m[0mprecis[0m[0;34m.[0m[0mloc[0m[0;34m[[0m[0mparam[0m[0;34m,[0m [0;34m[[0m[0;34m"5.0%"[0m[0;34m,[0m [0;34m"95.0%"[0m[0;34m][0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m)[0m[0;34m,[0m [0;34m[[0m[0mi[0m[0;34m,[0m [0mi[0m[0;34m][0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m"k"[0m[0;34m,[0m [0max[0m[0;34m=[0m[0max[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/seaborn/_decorators.py[0m in [0;36minner_f[0;34m(*args, **kwargs)[0m
+[1;32m     44[0m             )
+[1;32m     45[0m         [0mkwargs[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0;34m{[0m[0mk[0m[0;34m:[0m [0marg[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0marg[0m [0;32min[0m [0mzip[0m[0;34m([0m[0msig[0m[0;34m.[0m[0mparameters[0m[0;34m,[0m [0margs[0m[0;34m)[0m[0;34m}[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 46[0;31m         [0;32mreturn[0m [0mf[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     47[0m     [0;32mreturn[0m [0minner_f[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m [0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/seaborn/categorical.py[0m in [0;36mpointplot[0;34m(x, y, hue, data, order, hue_order, estimator, ci, n_boot, units, seed, markers, linestyles, dodge, join, scale, orient, color, palette, errwidth, capsize, ax, **kwargs)[0m
+[1;32m   3363[0m                             [0mestimator[0m[0;34m,[0m [0mci[0m[0;34m,[0m [0mn_boot[0m[0;34m,[0m [0munits[0m[0;34m,[0m [0mseed[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3364[0m                             [0mmarkers[0m[0;34m,[0m [0mlinestyles[0m[0;34m,[0m [0mdodge[0m[0;34m,[0m [0mjoin[0m[0;34m,[0m [0mscale[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3365[0;31m                             orient, color, palette, errwidth, capsize)
+[0m[1;32m   3366[0m [0;34m[0m[0m
+[1;32m   3367[0m     [0;32mif[0m [0max[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/seaborn/categorical.py[0m in [0;36m__init__[0;34m(self, x, y, hue, data, order, hue_order, estimator, ci, n_boot, units, seed, markers, linestyles, dodge, join, scale, orient, color, palette, errwidth, capsize)[0m
+[1;32m   1654[0m         [0;34m"""Initialize the plotter."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1655[0m         self.establish_variables(x, y, hue, data, orient,
+[0;32m-> 1656[0;31m                                  order, hue_order, units)
+[0m[1;32m   1657[0m         [0mself[0m[0;34m.[0m[0mestablish_colors[0m[0;34m([0m[0mcolor[0m[0;34m,[0m [0mpalette[0m[0;34m,[0m [0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1658[0m         [0mself[0m[0;34m.[0m[0mestimate_statistic[0m[0;34m([0m[0mestimator[0m[0;34m,[0m [0mci[0m[0;34m,[0m [0mn_boot[0m[0;34m,[0m [0mseed[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/seaborn/categorical.py[0m in [0;36mestablish_variables[0;34m(self, x, y, hue, data, orient, order, hue_order, units)[0m
+[1;32m    155[0m             [0;31m# Figure out the plotting orientation[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    156[0m             orient = infer_orient(
+[0;32m--> 157[0;31m                 [0mx[0m[0;34m,[0m [0my[0m[0;34m,[0m [0morient[0m[0;34m,[0m [0mrequire_numeric[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mrequire_numeric[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    158[0m             )
+[1;32m    159[0m [0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/seaborn/_core.py[0m in [0;36minfer_orient[0;34m(x, y, orient, require_numeric)[0m
+[1;32m   1327[0m     [0;32melif[0m [0mrequire_numeric[0m [0;32mand[0m [0;34m"numeric"[0m [0;32mnot[0m [0;32min[0m [0;34m([0m[0mx_type[0m[0;34m,[0m [0my_type[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1328[0m         [0merr[0m [0;34m=[0m [0;34m"Neither the `x` nor `y` variable appears to be numeric."[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1329[0;31m         [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0merr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1330[0m [0;34m[0m[0m
+[1;32m   1331[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: Neither the `x` nor `y` variable appears to be numeric.
+TypeError: Neither the `x` nor `y` variable appears to be numeric.
+
